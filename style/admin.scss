@@ -1,0 +1,110 @@
+.lateralNav {
+	position: fixed;
+	top: 180px;
+	left: 20px;
+
+	width: 200px;
+	min-height: 200px;
+
+	padding: 10px 25px;
+	border-radius: 15px;
+	box-sizing: border-box;
+
+	background-color: #fff;
+	box-shadow: #0002 2px 2px 5px;
+
+	display: flex;
+	flex-direction: column;
+}
+
+.content {
+	margin-top: 48px;
+	padding-top: 24px;
+}
+.card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+
+	text-align: left !important;
+	padding-left: 240px;
+	box-sizing: border-box;
+	
+	&.hidden {
+		display: none;
+	}
+	
+	&.sectionTitle {
+		height: 10%;
+		margin-bottom: 15px;
+		.text {
+			h1 {
+				display: inline;
+				margin-right: 10px;
+				vertical-align: middle;
+			}
+
+			.button.new {
+				display: inline-block;
+				height: 35px;
+				width: 35px;
+				border-radius: 100%;
+				background-color: #3a8e0b;
+				color: #eaeaea;
+				border: none;
+			}
+		}
+	}
+}
+.photoList .galleryItem {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+
+	.media {
+		height: 100px;
+		width: 170px;
+	}
+	.description {
+		//margin-left: 20px !important;
+		text-align: left !important;
+
+		h1 {
+			font-weight: 700;
+			font-size: 20px;
+			margin-bottom: 0;
+			display: inline-block;
+		}
+		p {
+			margin-top: 0;
+		}
+	}
+}
+.postList .postItem {
+	h1 {
+		margin-bottom: 5px;
+		display: inline-block;
+	}
+	p {
+		margin-top: 5px;
+		font-weight: 200;
+	}
+}
+.photoList .galleryItem .description, .postList .postItem{
+	.button.delete {
+		display: inline;
+		height: unset;
+		width: unset;
+		border-radius: 100%;
+		background-color: #f00;
+		color: #eaeaea;
+
+		padding: 10px;
+		margin: auto;
+		display: block;
+		border: none;
+	}
+}
+
+//importo stili finestra
+@import './modal.scss';

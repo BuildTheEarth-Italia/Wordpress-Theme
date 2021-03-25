@@ -1,0 +1,125 @@
+$boxMargin: 25px 300px;
+
+/* Post content */
+article.card.postContent {
+    flex-direction: column;
+    margin-bottom: 50px;
+    
+    & > * {
+        margin: $boxMargin;
+    }
+
+    .post-title {
+    	font-size: 64px;
+    }
+
+    .post-content > * {
+        margin: 10px auto;
+        
+        &.wp-block-quote {
+            margin-right: 50px;
+            margin-left: 40px;
+            padding: 2px 0 2px 15px;
+            border-left: hsla(var(--accent-hue), 60%, 50%, 0.6) solid 8px;
+        }
+
+        strong {
+            background: linear-gradient(0, hsla(var(--accent-hue), 60%, 50%, 0.6) 40%, transparent 0%);
+            font-weight: normal;
+        }
+        
+        &.wp-block-image {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            img {
+                align-self: center;
+            }
+
+            figcaption {
+                text-align: centerS;
+            }
+        }
+    }
+    
+    .post-categories {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        
+        .post-category {
+            padding: 2px 5px;
+            margin-right: 10px;
+            border-radius: 25px;
+            background-attachment: scroll;
+            background-image: none;
+            background-color: hsl(var(--accent-hue), 70%, 50%); 
+        
+            & > a, & > a:visited {
+                color: hsl(0, 0%, 100%);
+            }
+        }
+    }
+
+    .post-author {
+        .author-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+		.author-info {
+			display: inline-flex;
+			flex-direction: column;
+			
+			.author-name {
+				color: var(--text-color);
+				font-size: 24px;
+				font-weight: bold;
+			}
+			.author-description {
+				color: #555;
+				font-size: 12px;
+				font-style: italic;
+			}
+		}
+    }
+}
+
+/* Post comments */
+div.card.postComments {
+    flex-direction: column;
+    
+    & > * {
+        margin: $boxMargin;
+    }
+
+    h3.comments {
+    	font-size: 64px;
+    }
+
+    .post-content > * {
+	    margin: 20px 0;
+    }
+    
+    .post-categories {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        
+        .post-category {
+            padding: 2px 5px;
+            margin-right: 10px;
+            border-radius: 25px;
+            background-attachment: scroll;
+        
+            & > a, & > a:visited {
+                color: var(--accent-text-color);
+            }
+        }
+    }
+}

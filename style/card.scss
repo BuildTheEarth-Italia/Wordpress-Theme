@@ -1,0 +1,142 @@
+.card {
+    min-height: 50%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 200px;
+    z-index: 2;
+
+    &:nth-child(odd) {
+        flex-direction: row-reverse;
+
+        .description {
+            margin-right: 45px;
+            text-align: right;
+        }
+    }
+    &:nth-child(even) .description {
+		margin-left: 45px;
+    }
+
+    .block {
+        position: absolute;
+        left: -13%;
+        z-index: 1;
+        width: 25%;
+
+        &.right {
+            left: unset;
+            right: -14%;
+        }
+    }
+    
+    .media {
+        height: 250px;
+		width: 425px;
+    }
+
+    .description {
+        .title {
+            font-weight: 700;
+        }
+        .detail {
+            font-weight: 200;
+        }
+    }
+
+    .text {
+        text-align: center;
+        .title {
+            font-weight: 700;
+            font-size: 48px;
+            margin: 0;
+        }
+        .detail {
+            font-weight: 200;
+            font-size: 24px;
+        }
+    }
+
+    .description, .galleryItem .description, .text {
+        & .button {
+            padding: 10px;
+            margin: auto;
+            height: 60px;
+            width: 240px;
+            display: block;
+
+            border: none;
+            border-radius: 10px;
+            background-color: #eaeaea;
+            box-shadow: #0008 2px 2px 6px;
+
+            font-weight: bold;
+            text-decoration: none;
+            color: #000000;
+        }
+    }
+}
+
+//imports
+@import "./discord.scss";
+@import "./gallery.scss";
+
+//media queries
+@media screen and (max-width: 1300px) {
+    .card .block {
+        left: -19%;
+        width: 30%;
+
+        &.right {
+            right: -17%;
+        }
+    }
+}
+@media screen and (max-width: 1100px) {
+    .card .block {
+        left: -22%;
+
+        &.right {
+            right: -18%;
+        }
+    }
+}
+@media screen and (max-width: 1100px) {
+    .card .block {
+        left: -23%;
+
+        &.right {
+            right: -12%;
+        }
+    }
+}
+@media screen and (max-width: 1100px) {
+    .card:not(#gallery) {
+        flex-direction: column-reverse !important;
+        justify-content: center;
+
+        .description {
+            margin: 0;
+            margin-bottom: 25px;
+            text-align: center !important;
+        }
+
+        .media {
+            height: 300px;
+            width: 600px;
+            margin: 0;
+            align-self: center;
+        }
+    }
+}
+@media screen and (max-width: 520px) {
+    .card:not(#gallery) .text {
+        .title {
+            font-size: 36px;
+        }
+        .detail {
+            font-size: 18px;
+        }
+    }
+}

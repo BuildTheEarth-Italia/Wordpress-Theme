@@ -1,0 +1,39 @@
+/*!
+Theme Name: BTE Italia
+Author: MemoryOfLife
+Description: Wordpress theme for Build The Earth Italia
+Version: 1.1.2
+License: proprietary
+Tags: custom-background, custom-logo
+*/
+
+/* ============================== */
+/*      	   Colors		      */
+/* ============================== */
+:root {
+    --accent-hue: 216;
+    --accent-background-color: hsl(var(--accent-hue), 36%, 49%);
+    --accent-text-color: hsl(0, 0%, 100%);
+    --background-color: hsl(0, 0%, 100%);
+    --text-color: hsl(0, 0%, 0%);
+}
+
+/* ============================== */
+/* 		   General Styles		  */
+/* ============================== */
+@import './style/general.scss';
+
+/* ============================== */
+/* 	 		 home.php			  */
+/* ============================== */
+@import './style/card.scss';
+
+/* ============================== */
+/* 	 		 Nav Bar			  */
+/* ============================== */
+@import './style/navbar.scss';
+
+/* ============================== */
+/*    content.php e single.php	  */
+/* ============================== */
+@import './style/content.scss';

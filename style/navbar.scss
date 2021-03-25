@@ -1,0 +1,59 @@
+.mainNav {
+    width: 100vw;
+    height: 48px;
+    padding: 5px 10px;
+    box-sizing: border-box;
+
+    transition: all .2s ease-out;
+    
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    :first-child {
+        margin-right: auto !important;
+    }
+    :last-child {
+        margin-right: 15px !important;
+    }
+
+    .navItem {
+        text-decoration: none;
+        color: #eaeaea;
+        margin-right: 20px;
+        font-size: 16px;
+
+        &.navLogo{
+            img {
+                height: 36px;
+                width: 36px;
+                border-radius: 50%;
+                vertical-align: middle;
+            }
+
+            font-size: 24px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: row;
+
+            li {
+                list-style: none;
+
+                & > a, & > a:visited {
+                    color: hsl(0, 0%, 100%);
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 930px) {
+    .mainNav .navItem .menu {
+        display: none;
+    }
+}
