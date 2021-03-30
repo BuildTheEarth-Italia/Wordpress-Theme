@@ -2,67 +2,95 @@
 //stampo header
 get_header();
 
+// Richiedo lo script per il testo mobile
+wp_enqueue_script('bte_text_changer');
+
 //ottengo le foto
 $photos = get_photos_from_bte_theme_showcase();
 
-if(count($photos) > 0) {
-	//importo script per galleria
-	wp_enqueue_script('bte_script_gallery');
+if (count($photos) > 0)
+  //importo script per galleria
+  wp_enqueue_script('bte_script_gallery');
 ?>
-<section class="card" id="gallery" style="flex-direction: column;">
-	<div class="text">
-		<h1 class="title">Galleria</h1>
-	</div>
-	<div class="gallery" data-gallery-max="<?=count($photos)?>" data-gallery-current-photo="0">
-	<?php
-		//itero liste foto per stamparle in html
-		foreach($photos as $id => $photo) {
-			//se nascoste le elimino
-			if(!$photo->visible) continue;
-			?>
-			<figure class="galleryItem" data-gallery-id="<?=$id?>">
-				<img src="<?=$photo->path?>" class="media" loading="lazy"/>
-				<figcaption class="description">
-					<h1 class="title"><?=$photo->title?></h1>
-					<span class="detail"><?=$photo->description?></span>
-				</figcaption>
-			</figure>
-		<?php } ?>
-	</div>
+
+<div class="welcomeCover custom-background lax" data-lax-bg-pos-y="0 0, 600 -60"></div>
+<section class="panel welcomePanel lax" data-lax-opacity="80 1, 180 0" data-lax-translate-y="0 -0, 100 -25, 210 -40">
+  <h1 class="staticText"><?= get_option('bte_main_sentence'); ?></h1>
+    <h2 class="dynamicText underlined">su Build The Earth Italia</h2>
 </section>
-<?php } ?>
-<section class="card map" id="map">
-	<iframe class="media" loading="lazy" allowtransparency="true" frameborder="0" src="https://www.google.com/maps/d/u/1/embed?mid=1lVkAeyFwAYxxSWIuUffjuLsLmqfjFRlK"></iframe>
-	<div class="description">
-		<h1 class="title">Mappa delle costruzioni</h1>
-		<p class="detail">Ecco tutti i luoghi in cui stiamo costruendo! Sono davvero tantissimi!</p>
-	</div>
-	<img  class="block lax" data-lax-rotate="430 0, 1430 15" src="<?=get_template_directory_uri()?>/resources/blocks/bricks.png"/>
-</section>
-<section class="card discord" id="discord">
-	<img  class="block right lax" data-lax-rotate="1260 -15, 2260 -20" src="<?=get_template_directory_uri()?>/resources/blocks/diamond-pickaxe.png"/>
-	<iframe class="media" loading="lazy" allowtransparency="true" frameborder="0" src="https://discordapp.com/widget?id=686910132017430538&amp;theme=light"></iframe>
-	<div class="description">
-		<h1 class="title">Discord</h1>
-		<p class="detail">Discord è il posto perfetto per parlare, divertirsi o perdere tempo &#x1F60B;!<br />Sei curioso ora? Passa a fare un salto con il widget accanto!</p>
-	</div>
-</section>
-<section class="card supportus" id="supportus">
-	<div class="text">
-		<h1 class="title">Supportaci</h1>
-		<p class="detail">Anche noi abbiamo bisogno di fondi &#x1F4B8;!<br />Vuoi sostenerci? Non esiteremo a ringraziarti!</p>
-		<a href="https://www.paypal.me/bteitaliadonations" class="button"><img loading="lazy" src="<?=get_template_directory_uri()?>/resources/paypal-logo.png" height="50" alt="PayPal logo"/></a>
-	</div>
-	<img  class="block lax" data-lax-rotate="1670 10, 2600 20" src="<?=get_template_directory_uri()?>/resources/blocks/diamond.png"/>
-</section>
-<section class="card play" id="play">
-	<div class="text">
-		<h1 class="title">Partecipa</h1>
-		<p class="detail">Sei eccitatissimo per questo progetto? Non perdere tempo allora!<br />Entra nel nostro server Discord per trovare le istruzioni.</p>
-		<a href="https://discord.gg/dMahHCH" class="button" style="background-color: #7289DA;"><img loading="lazy" src="<?=get_template_directory_uri()?>/resources/Discord-Logo.svg" height="70"/></a>
-	</div>
-</section>
+
+<main class="root">
+  <div class="grass"></div>
+  <section class="panel commonPanel" id="chi-siamo">
+    <div class="box">
+      <div class="text">
+        <h1 class="title">Chi siamo</h1>
+        <p class="description"><i>Build The Earth Italia</i> &egrave; una community che nasce durante il Lockdown <wbr>per gestire il progetto <abbr translate="no" title="Build The Earth">BTE</abbr> nella nostra nazione 🇮🇹.</p>
+      </div>
+      <div class="model" data-color="#0088f0" data-alpha="0.5"></div>
+    </div>
+  </section>
+
+  <section class="panel commonPanel reverse" id="il-progetto">
+    <div class="box">
+      <div class="text">
+        <h1 class="title">Il nostro progetto</h1>
+        <p class="description">Noi di <i><abbr translate="no" title="Build The Earth">BTE</abbr> Italia</i> ci occupiamo di portare avanti un ambizioso progetto, <wbr>quello di ricostruire la Terra in scala reale su Minecraft, <wbr>direttamente dal proprio PC!</p>
+      </div>
+      <div class="model" data-color="#ff9900"></div>
+    </div>
+  </section>
+
+  <section class="panel commonPanel" id="perche">
+    <div class="box">
+      <div class="text">
+        <h1 class="title">Perch&eacute;?</h1>
+        <p class="description">Con l'avvento di Internet possiamo scoprire nuove culture, idee e persone. <wbr>Proprio su questo si basa <i><abbr translate="no" title="Build The Earth">BTE</abbr> Italia</i>, mostrare le bellezze dell'Italia agli altri.</p>
+      </div>
+      <div class="model" data-color="#33cc33"></div>
+    </div>
+  </section>
+
+  <section class="panel textMediaPanel" id="partecipa">
+    <div class="box">
+      <div class="text">
+        <h1 class="title">Partecipa</h1>
+        <p class="description">Sei interessato? Vuoi partecipare?<br>Tutto quello che devi fare è entrare <wbr>nel server Discord!</p>
+      </div>
+      <!-- <iframe class="media" loading="lazy" allowtransparency="true" frameborder="0" src="https://discordapp.com/widget?id=686910132017430538&amp;theme=light"></iframe> -->
+      <a href="https://discord.com/invite/dMahHCH" title="Il nostro server Discord" class="discordJoinButton">Unisciti</a>
+    </div>
+  </section>
+
+  <section class="panel galleryPanel" id="galleria">
+    <div class="box">
+      <div class="text">
+        <h1 class="title">Galleria</h1>
+      </div>
+      <div class="gallery">
+        <div class="slider lax animateMargin" data-lax-translate-x="2400 50, 3800 -150"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  window.sentences = [
+    <?php
+    $sentences = str_replace("'", "\\'", get_option('bte_second_sentences'));
+    $sentences_list = explode("\n", $sentences);
+
+    echo str_replace(
+      array("\r", "\n"), 
+      "", 
+      "'" . implode("', '", $sentences_list) . "'"
+    );
+    ?>
+  ];
+</script>
+
 <?php
-	//stampo footer
-	get_footer();
+
+//stampo footer
+get_footer();
 ?>

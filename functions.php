@@ -161,11 +161,13 @@ add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_comments' );
 
 //registro gli scripts
 //lax.js
-wp_register_script('lax', 'https://cdn.jsdelivr.net/npm/lax.js', null, null, true);
+wp_register_script('lax', 'https://cdn.jsdelivr.net/npm/lax.js@1.2.5', null, null, true);
 //script per galleria in pagina amministrazione
 wp_register_script('bte_script_admin_media', get_template_directory_uri() . '/js/admin_media.js', array('jquery'), null, true);
 //script per galleria in home.php
 wp_register_script('bte_script_gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery'), null, true);
 //script per parallax in pagine pubbliche
 wp_register_script('bte_script_parallax', get_template_directory_uri() . '/js/parallax.js', array('jquery', 'lax'), null, true);
+//script per testi diinamici in homepage
+wp_register_script('bte_text_changer', get_template_directory_uri() . '/js/text_changer.js', null, null, true);
 ?>
