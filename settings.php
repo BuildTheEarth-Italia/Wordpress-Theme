@@ -228,14 +228,17 @@ function render_bte_theme_menu_page()
 				// Stampo la tabella per le immagini
 				$table->display();
 			}
-
-			settings_fields("bte_theme_menu_page");
-			// Stampo le opzioni
-			do_settings_sections("bte_theme_menu_page");
-
-			// Ed ora il pulstane per salvare
-			submit_button();
 				?>
+				</form>
+				<form method="post" action="options.php">
+					<?php
+					settings_fields("bte_theme_menu_page");
+					// Stampo le opzioni
+					do_settings_sections("bte_theme_menu_page");
+
+					// Ed ora il pulstane per salvare
+					submit_button();
+					?>
 				</form>
 	</div>
 <?php
@@ -249,12 +252,12 @@ function add_bte_theme_menu_item()
 	// La sezione con i campi
 	add_settings_section('bte_sentences_section', 'Frasi della Homescreen', null, 'bte_theme_menu_page');
 
-	add_settings_field('bte_main_sentence', 'Frase primaria', 'bte_fill_main_sentence', 'bte_theme_menu_page', 'bte_sentences_section');
-	add_settings_field('bte_second_sentences', 'Frasi secondarie', 'bte_fill_second_sentences', 'bte_theme_menu_page', 'bte_sentences_section', ['label_for' => 'Inserisci una frase per riga']);
-
 	//Salvo il dato
 	register_setting('bte_theme_menu_page', 'bte_main_sentence');
 	register_setting('bte_theme_menu_page', 'bte_second_sentences', ['type' => 'array']);
+
+	add_settings_field('bte_main_sentence', 'Frase primaria', 'bte_fill_main_sentence', 'bte_theme_menu_page', 'bte_sentences_section');
+	add_settings_field('bte_second_sentences', 'Frasi secondarie', 'bte_fill_second_sentences', 'bte_theme_menu_page', 'bte_sentences_section', ['label_for' => 'Inserisci una frase per riga']);
 }
 add_action('admin_menu', 'add_bte_theme_menu_item');
 
