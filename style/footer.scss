@@ -1,0 +1,71 @@
+.footer {
+    min-height: 200px;
+    padding: 50px;
+
+    background-color: var(--alt-background-color);
+    color: var(--alt-text-color);
+
+    a, a:visited {
+        color: var(--accent-text-color);
+        text-decoration: none;
+
+        width: min-content;
+
+        background: linear-gradient(to bottom, transparent 70%, var( --accent-background-color) 0%);
+    }
+
+    display: flex;
+    flex-flow: row wrap;
+
+    .box {
+        flex-grow: 2;
+
+        .brand {
+            .name {
+                margin: 0;
+                margin-left: 15px;
+
+                display: inline;
+
+                font-family: 'Nunito', sans-serif;
+                font-size: 25px;
+                font-weight: bold;
+            }
+
+            .logo {
+                height: 35px;
+                width: 35px;
+
+                display: inline;
+                vertical-align: middle;
+
+                border-radius: 100%;
+            }
+        }
+
+        .contacts {
+            display: flex;
+            flex-direction: column;
+
+            margin-top: 10px;
+
+            .link {
+                margin-left: 10px;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+    .credits {
+        width: 100%;
+        margin: 0;
+        margin-top: 15px;
+        padding: 0;
+        
+        align-self: end;
+
+        text-align: center;
+        font-weight: lighter;
+        font-size: 85%;
+    }
+}

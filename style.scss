@@ -11,11 +11,23 @@ Tags: custom-background, custom-logo
 /*      	   Colors		      */
 /* ============================== */
 :root {
-    --accent-hue: 216;
-    --accent-background-color: hsl(var(--accent-hue), 36%, 49%);
+    --accent-hue: 215;
+    --accent-background-color: hsl(var(--accent-hue), 80%, 50%);
     --accent-text-color: hsl(0, 0%, 100%);
+    --accent-text-color-hover: hsl(0, 0%, 93%);
     --background-color: hsl(0, 0%, 100%);
+    --background-color-hover: var(--accent-text-color-hover);
     --text-color: hsl(0, 0%, 0%);
+
+    --alt-background-color: hsl(240, 10%, 15%);
+    --alt-text-color: hsl(240, 5%, 90%);
+
+    // --white: #eee;
+    // --white-gray: hsl(0, 0%, 90%);
+    // --gray: #aaa;
+    // --black: #000010;
+    // --black-gray: #202025;
+    // --black-gray-semitransparent: #202025b0;
 }
 
 /* ============================== */
@@ -26,10 +38,10 @@ Tags: custom-background, custom-logo
 /* ============================== */
 /* 	 		 home.php			  */
 /* ============================== */
-@import './style/card.scss';
+@import './style/panel.scss';
 
 /* ============================== */
-/* 	 		 Nav Bar			  */
+/* 	 		  NavBar			  */
 /* ============================== */
 @import './style/navbar.scss';
 
@@ -37,3 +49,8 @@ Tags: custom-background, custom-logo
 /*    content.php e single.php	  */
 /* ============================== */
 @import './style/content.scss';
+
+/* ======================== */
+/*          Footer          */
+/* ======================== */
+@import './style/footer.scss'

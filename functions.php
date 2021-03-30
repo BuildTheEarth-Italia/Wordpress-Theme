@@ -72,7 +72,7 @@ function hide_photo_of_bte_theme_showcase($id) {
 function change_bte_theme_custom_background_cb() {
     ob_start();
     _custom_background_cb();
-    echo str_replace( 'body.custom-background', 'body, .custom-background', ob_get_clean());
+    echo str_replace( '.custom-background', '', ob_get_clean());
 }
 
 
@@ -162,6 +162,8 @@ add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_comments' );
 //registro gli scripts
 //lax.js
 wp_register_script('lax', 'https://cdn.jsdelivr.net/npm/lax.js@1.2.5', null, null, true);
+//Three.js
+wp_register_script('threejs', 'https://cdn.jsdelivr.net/npm/three/build/three.min.js', null, null, true);
 //script per galleria in pagina amministrazione
 wp_register_script('bte_script_admin_media', get_template_directory_uri() . '/js/admin_media.js', array('jquery'), null, true);
 //script per galleria in home.php

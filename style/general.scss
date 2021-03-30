@@ -1,16 +1,17 @@
-body {
+html, body {
     margin: 0;
     padding: 0;
     height: 100vh;
     width: 100vw;
 
-    font-family: 'Nunito', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 
     scroll-behavior: smooth;
     overflow-x: hidden;
 
     background: var(--background-color);
 }
+
 .heading {
     position: fixed;
     top: 10vh;

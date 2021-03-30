@@ -1,0 +1,332 @@
+/* ======================== */
+/*       Generic Panel      */
+/* ======================== */
+.panel {
+    width: 100%;
+    background-color: var(--background-color-hover);
+
+    .box {
+        height: min-content;
+    }
+
+    .title {
+        font-family: 'Nunito', sans-serif;
+    }
+}
+
+/* ======================== */
+/*          Welcome         */
+/* ======================== */
+.panel.welcomePanel {
+    position: fixed;
+    top: 25%;
+    left: 10%;
+    z-index: 1;
+    
+    background: none;
+
+    color: var(--background-color-hover);
+
+    & > * {
+        margin: 0;
+        padding: 0;
+
+        width: fit-content;
+    }
+
+    & > h1 {
+        font-size: 64px;
+    }
+
+    & > h2 {
+        font-size: 46px;
+        font-weight: lighter;
+
+        background: linear-gradient(to bottom, transparent 0%, var(--accent-background-color) 0%);
+        background-size: 0% 100%;
+        background-repeat: no-repeat;
+
+        transition: background-size .5s;
+
+        &.underlined {
+            background-size: 100% 100%;
+        }
+    }
+}
+.welcomeCover {
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.welcomePanel + * {
+    margin-top: 35%;
+}
+
+/* ======================== */
+/*           Grass          */
+/* ======================== */
+.grass {
+    width: 100%;
+    height: 120px;
+    margin-bottom: -6px;
+
+    user-select: none;
+    -webkit-user-drag: none;
+
+    fill: var(--background-color);
+    background: url('resources/grass.svg');
+    background-size: cover;
+}
+
+/* ======================== */
+/*       Common Panel       */
+/* ======================== */
+.panel.commonPanel {
+    height: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    & > .box {
+        width: 45%;
+        
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        
+        .title {
+            margin: 0;
+            
+            font-size: 46px;
+        }
+        
+        .description {
+            margin: 0;
+            margin-top: 15px;
+            
+            width: 350px;
+            
+            font-size: 25px;
+            font-weight: lighter;
+        }
+    }
+    
+    &.reverse > .box {        
+        flex-direction: row-reverse;
+    }
+    
+    .model {
+        $dimension: 400px;
+        
+        height: $dimension;
+        width: $dimension;
+
+        &.rounded {
+            border-radius: 100%;
+        }
+
+        background: var(--background-color);
+    }
+}
+
+/* ======================== */
+/*       Special Panel      */
+/* ======================== */
+.panel.textMediaPanel {
+    height: 850px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    & > .box {
+        width: 45%;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .text {
+            text-align: center;
+        
+            .title {
+                margin: 0;
+                
+                font-size: 46px;
+            }
+            
+            .description {
+                margin: 0;
+                margin-top: 15px;
+                    
+                font-size: 25px;
+                font-weight: lighter;
+            }
+        }
+    }
+    
+    .media {
+        height: 450px;
+
+        margin-top: 50px;
+
+        background: var(--background-color);
+        box-shadow: 0 0 5px #0003;
+    }
+
+    .discordJoinButton {
+        padding: 20px 15px;
+        width: 180px;
+        margin-top: 25px;
+        
+        display: none;
+        
+        align-self: center;
+
+        border-radius: 5px;
+        
+        background-color: var(--accent-background-color);
+        color: var(--accent-text-color);
+
+        font-size: 24px;
+        text-align: center;
+        text-decoration: none;
+    }
+}
+
+/* ======================== */
+/*       Gallery Panel      */
+/* ======================== */
+
+.panel.galleryPanel {
+    height: 500px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    & > .box {
+        width: 100%;
+        height: 100%;
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        overflow: hidden;
+
+        .text {
+            text-align: center;
+
+            .title {
+                margin: 0;
+                
+                font-size: 46px;
+            }
+        }
+
+        .gallery {
+            max-width: 100%;
+			margin-top: 25px;
+            
+            transform: rotate(-2deg) scale(1.02);
+
+            .slider {
+                display: flex;
+                flex-direction: row;
+                
+                transition: transform .1s ease;
+				
+				&.animateMargin {
+					transition: transform .1s ease, margin-left .01s ease-out;
+				}
+
+                .media {
+                    max-width: 450px;
+                    height: 240px;
+
+                    margin-left: 35px;
+
+                    &:first-of-type {
+                        margin-left: auto;
+                    }
+                    &:last-of-type {
+                        margin-right: auto;
+                    }
+
+                    .image {
+                        height: 100%;
+
+                        border-radius: 5px;
+
+                        background: var(--white-gray);
+                        box-shadow: 0 0 5px #0003;
+
+                        user-select: none;
+                    }
+                    
+                    transition: transform .2s ease-out;
+                    &.expanded {
+                        transform: rotate(2deg);
+
+                        .description {
+                            display: block;
+                            opacity: 1;
+                        }
+                    }
+
+                    .description {
+                        position: relative;
+                        top: -101%;
+                        left: 0;
+
+                        height: 100%;
+                        width: 100%;
+                        box-sizing: border-box;
+
+                        padding: 15px;
+                        border-radius: 5px;
+
+                        background: var(--black-gray-semitransparent);
+                        
+                        opacity: 0;
+                        display: none;
+                        user-select: none;
+
+                        transition: opacity .2s ease-out;
+
+                        .location {
+                            width: 100%;
+                            margin: 0;
+                            
+                            text-align: center;
+                            color: var(--white-gray);
+
+                            font-family: 'Nunito', sans-serif;
+                        }
+
+                        .author {
+                            list-style: none;
+
+                            .name {
+                                color: var(--white-gray);
+
+                                width: min-content;
+
+                                background: linear-gradient(to bottom, transparent 70%, var(--accent) 0%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

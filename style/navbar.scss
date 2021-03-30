@@ -1,53 +1,91 @@
-.mainNav {
-    width: 100vw;
-    height: 48px;
-    padding: 5px 10px;
+.navbar {
+    height: 80px;
+    width: 100%;
+    padding: 5px 15px;
     box-sizing: border-box;
 
-    transition: all .2s ease-out;
-    
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10;
 
-    :first-child {
-        margin-right: auto !important;
-    }
-    :last-child {
-        margin-right: 15px !important;
-    }
+    background-size: cover;
 
-    .navItem {
-        text-decoration: none;
-        color: #eaeaea;
-        margin-right: 20px;
-        font-size: 16px;
+    border-radius: 0 0 5px 5px;
 
-        &.navLogo{
-            img {
-                height: 36px;
-                width: 36px;
-                border-radius: 50%;
-                vertical-align: middle;
-            }
+    .brand {
+        .logo {
+            height: 45px;
+            width: 45px;
 
-            font-size: 24px;
+            display: inline;
+            vertical-align: middle;
+
+            border-radius: 100%;
         }
 
-        .menu {
-            display: flex;
-            flex-direction: row;
+        .name {
+            margin: 0;
+            margin-left: 15px;
 
-            li {
-                list-style: none;
+            display: inline;
 
-                & > a, & > a:visited {
-                    color: hsl(0, 0%, 100%);
-                }
+            font-family: "Nunito", sans-serif;
+            font-size: 24px;
+            color: var(--text-color);
+        }
+    }
+
+    .menu {
+        min-width: 20%;
+
+        margin: 0;
+
+        display: flex;
+        justify-content: space-evenly;
+        flex-direction: row;
+
+        .menu-item {
+            list-style-type: none;
+
+            margin-right: 10px;
+
+            font-weight: lighter;
+            font-size: 16px;
+
+            * {
+                text-decoration: none;
+                color: var(--text-color);
+
+                transition: color 0.5s;
             }
+
+            &:hover {
+                color: var(--accent-text-color-hover);
+            }
+
+            &.active {
+                background: linear-gradient(to bottom, transparent 70%, var(--accent) 0%);
+                background-size: 100% 40%;
+                background-repeat: no-repeat;
+            }
+        }
+    }
+
+    &.fixed {
+        position: fixed;
+        z-index: 10;
+        top: 0;
+        left: 0;
+
+        background-color: var(--background-color);
+        box-shadow: 0 0 5px #0003;
+
+        * {
+            color: var(--text-color) !important;
+        }
+
+        .brand .name {
+            font-size: 25px;
         }
     }
 }
