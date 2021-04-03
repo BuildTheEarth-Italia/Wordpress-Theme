@@ -39,13 +39,13 @@ const updateOnScroll = function () {
         container.css('marginTop', currentMargin);
 
         // Imposto la distanza da il margine di sopra a 0
-        navbar.css('marginTop', null);
+        navbar.css('marginTop', '');
     }
 }
 
 // Se la pagina viene ridimensionata aggiorno currentMargin
 const updateOnResize = function () {
-    container.css('marginTop', null); // Rimuovo il margine vecchio
+    container.css('marginTop', ''); // Rimuovo il margine vecchio
 
     currentMargin = parseInt(
         container.css('marginTop') // Aggiorno il margine di default
