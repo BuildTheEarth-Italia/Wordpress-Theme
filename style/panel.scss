@@ -3,7 +3,7 @@
 /* ======================== */
 .panel {
     width: 100%;
-    background-color: var(--background-color-hover);
+    background-color: var(--background-color);
 
     .box {
         height: min-content;
@@ -79,9 +79,8 @@
     user-select: none;
     -webkit-user-drag: none;
 
-    fill: var(--background-color);
-    background: url('resources/grass.svg');
-    background-size: cover;
+    background-color: var(--background-color);
+    mask-image: url('resources/grass.svg');
 }
 
 /* ======================== */

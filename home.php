@@ -13,13 +13,13 @@ if (count($photos) > 0)
   wp_enqueue_script('bte_script_gallery');
 ?>
 
-<div class="welcomeCover custom-background lax" data-lax-bg-pos-y="0 0, 600 -60"></div>
+
+<div class="welcomeCover custom-background lax" data-lax-translate-y="0 0, 600 -80"></div>
 <section class="panel welcomePanel lax" data-lax-opacity="80 1, 180 0" data-lax-translate-y="0 -0, 100 -25, 210 -40">
   <h1 class="staticText"><?= get_option('bte_main_sentence'); ?></h1>
     <h2 class="dynamicText underlined">su Build The Earth Italia</h2>
 </section>
 
-<main class="root">
   <div class="grass"></div>
   <section class="panel commonPanel" id="chi-siamo">
     <div class="box">
@@ -57,22 +57,32 @@ if (count($photos) > 0)
         <h1 class="title">Partecipa</h1>
         <p class="description">Sei interessato? Vuoi partecipare?<br>Tutto quello che devi fare è entrare <wbr>nel server Discord!</p>
       </div>
-      <!-- <iframe class="media" loading="lazy" allowtransparency="true" frameborder="0" src="https://discordapp.com/widget?id=686910132017430538&amp;theme=light"></iframe> -->
+      <iframe class="media" loading="lazy" allowtransparency="true" frameborder="0" src="https://discordapp.com/widget?id=686910132017430538&amp;theme=light"></iframe>
       <a href="https://discord.com/invite/dMahHCH" title="Il nostro server Discord" class="discordJoinButton">Unisciti</a>
     </div>
   </section>
-
-  <section class="panel galleryPanel" id="galleria">
-    <div class="box">
-      <div class="text">
-        <h1 class="title">Galleria</h1>
-      </div>
-      <div class="gallery">
-        <div class="slider lax animateMargin" data-lax-translate-x="2400 50, 3800 -150"></div>
-      </div>
-    </div>
-  </section>
-</main>
+  <?php
+    if (count($photos) > 0) { ?>
+      <section class="panel galleryPanel" id="galleria">
+        <div class="box">
+          <div class="text">
+            <h1 class="title">Galleria</h1>
+          </div>
+          <div class="gallery">
+            <div class="slider lax animateMargin" data-lax-translate-x="2400 50, 3800 -150">
+              <?php
+              //itero liste foto per stamparle in html
+              foreach ($photos as $id => $photo) {
+              ?>
+                <figure class="media" data-gallery-id="<?= $id ?>">
+                  <img class="image" src="<?= $photo->path ?>" class="media" loading="lazy" alt="<?= $photo->title ?> - <?= $photo->description ?>" draggable="false" />
+                </figure>
+              <?php } ?>
+            </div>
+          </div>
+        </div>
+      </section>
+    <?php } ?>
 
 <script>
   window.sentences = [

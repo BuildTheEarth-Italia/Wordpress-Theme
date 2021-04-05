@@ -12,6 +12,10 @@
 
     border-radius: 0 0 5px 5px;
 
+    a {
+        background: none;
+    }
+
     .brand {
         .logo {
             height: 45px;
@@ -64,7 +68,7 @@
             }
 
             &.active {
-                background: linear-gradient(to bottom, transparent 70%, var(--accent) 0%);
+                background: linear-gradient(to bottom, transparent 70%, var(--accent-background-color) 0%);
                 background-size: 100% 40%;
                 background-repeat: no-repeat;
             }

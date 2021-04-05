@@ -15,7 +15,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body class=" <?= join(' ', get_body_class()) ?>">
+<body class="lax <?= join(' ', get_body_class()) ?>" data-lax-bg-pos-y="0 0, 600 -80">
     <nav class="navbar">
         <a href="<?= get_bloginfo('wpurl') ?>" rel="home" class="brand">
             <img class="logo" src="<?= get_site_icon_url(36) ?>" alt="Lugo ufficiale di <?= get_bloginfo('name') ?>" rel="home" />
@@ -28,3 +28,4 @@
             )
         ); ?>
     </nav>
+    <main class="root">

@@ -1,3 +1,4 @@
+<div class="grass"></div>
 <article class="card postContent">
     <h2 class="post-title"><?php the_title(); ?></h2>
     <div class="post-content"><?php the_content();?></div>

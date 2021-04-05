@@ -1,3 +1,4 @@
+</main>
 <footer class="footer">
     <div class="box">
       <div class="brand">
