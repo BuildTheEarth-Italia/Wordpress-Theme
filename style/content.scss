@@ -87,6 +87,19 @@ article.card.postContent {
 			}
 		}
     }
+
+    .need-more-help {
+        margin-top: 100px;
+        
+        .title {
+            font-size: 21px;
+            margin: 2px auto;
+        }
+
+        .join-discord {
+            font-size: 14px;
+        }
+    }
 }
 
 /* Post comments */

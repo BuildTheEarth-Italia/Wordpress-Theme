@@ -113,6 +113,32 @@ function init_bte_theme() {
 		 )
 	);
 	
+	// Creo Custom types per faq e pagine di aiuto
+	register_post_type('bte_faqs',
+        array(
+            'labels' => array(
+                'name' => __( 'Faqs' ),
+                'singular_name' => __( 'Faq' )
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'faqs'),
+            'show_in_rest' => true,
+			'menu_icon' => 'dashicons-editor-help',
+			'menu_position' => 5,
+        )
+    );
+
+	// Aggiungo le funzioni di questa pagina
+	add_post_type_support( 'bte_faqs', array(
+		'author',
+		'editor',
+		'title',
+	));
+
+	// Aggiorno i link di rewrite
+	add_action( 'after_switch_theme', 'flush_rewrite_rules' );
+
 	//galleria foto
 	global $wpdb;
 	$wpdb->show_errors();
@@ -172,4 +198,3 @@ wp_register_script('bte_script_gallery', get_template_directory_uri() . '/js/gal
 wp_register_script('bte_script_parallax', get_template_directory_uri() . '/js/parallax.js', array('jquery', 'lax'), null, true);
 //script per testi diinamici in homepage
 wp_register_script('bte_text_changer', get_template_directory_uri() . '/js/text_changer.js', null, null, true);
-?>
