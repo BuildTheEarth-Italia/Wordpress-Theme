@@ -1,20 +1,25 @@
-$boxMargin: 25px 300px;
+$boxMargin: 25px 25%;
 
 /* Post content */
 article.card.postContent {
     flex-direction: column;
-    margin-bottom: 50px;
+    
+    padding: 50px 0px;
+    background-color: white;
+    min-height: 55vh;
     
     & > * {
         margin: $boxMargin;
     }
 
     .post-title {
-    	font-size: 64px;
+    	font-weight: 400;
+        font-size: 46px;
     }
 
     .post-content > * {
         margin: 10px auto;
+        width: 100%;
         
         &.wp-block-quote {
             margin-right: 50px;
@@ -87,19 +92,6 @@ article.card.postContent {
 			}
 		}
     }
-
-    .need-more-help {
-        margin-top: 100px;
-        
-        .title {
-            font-size: 21px;
-            margin: 2px auto;
-        }
-
-        .join-discord {
-            font-size: 14px;
-        }
-    }
 }
 
 /* Post comments */
@@ -131,6 +123,7 @@ div.card.postComments {
             background-attachment: scroll;
         
             & > a, & > a:visited {
+                background: none;
                 color: var(--accent-text-color);
             }
         }

@@ -1,0 +1,66 @@
+article.card.postContent {
+    .post-title {
+        margin-bottom: 5px;
+
+        font-weight: 400;
+        font-size: 46px;
+    }
+
+    .post-author {
+        display: inline;
+        margin-top: 0;
+
+        font-size: 14px;
+        font-weight: 200;
+        font-style: italic;
+    }
+
+    .post-content {
+        $title-color: hsl(var(--accent-hue), 100%, 65%);
+
+        h2 {
+            color: $title-color;
+
+            user-select: none;
+
+            display: inline-flex;
+            align-items: center;
+            margin-top: 40px;
+
+            &::after,
+            &::before {
+                content: "";
+                height: 2px;
+                background: $title-color;
+                display: inline-block;
+            }
+
+            &::after {
+                width: auto;
+                margin-left: 15px;
+                flex: 1 1 auto;
+            }
+
+            &::before {
+                width: 5%;
+                margin-right: 15px;
+                flex: 0 1 5%;
+            }
+        }
+    }
+
+    .need-more-help {
+        margin-top: 100px;
+
+        .title {
+            margin: 2px auto;
+
+            font-size: 32px;
+            font-weight: 400;
+        }
+
+        .join-discord {
+            font-size: 14px;
+        }
+    }
+}

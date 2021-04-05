@@ -126,15 +126,9 @@ function init_bte_theme() {
             'show_in_rest' => true,
 			'menu_icon' => 'dashicons-editor-help',
 			'menu_position' => 5,
+			'supports' => array('title', 'editor', 'author'),
         )
     );
-
-	// Aggiungo le funzioni di questa pagina
-	add_post_type_support( 'bte_faqs', array(
-		'author',
-		'editor',
-		'title',
-	));
 
 	// Aggiorno i link di rewrite
 	add_action( 'after_switch_theme', 'flush_rewrite_rules' );
@@ -190,11 +184,20 @@ add_action( 'wp_before_admin_bar_render', 'remove_admin_bar_comments' );
 wp_register_script('lax', 'https://cdn.jsdelivr.net/npm/lax.js@1.2.5', null, null, true);
 //Three.js
 wp_register_script('threejs', 'https://cdn.jsdelivr.net/npm/three/build/three.min.js', null, null, true);
+// Script per utils
+wp_register_script('bte_script_utils', get_template_directory_uri() . '/js/utils.js', null, true);
 //script per galleria in pagina amministrazione
 wp_register_script('bte_script_admin_media', get_template_directory_uri() . '/js/admin_media.js', array('jquery'), null, true);
 //script per galleria in home.php
-wp_register_script('bte_script_gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery'), null, true);
+wp_register_script('bte_script_gallery', get_template_directory_uri() . '/js/gallery.js', array('bte_script_utils'), null, true);
 //script per parallax in pagine pubbliche
 wp_register_script('bte_script_parallax', get_template_directory_uri() . '/js/parallax.js', array('jquery', 'lax'), null, true);
 //script per testi diinamici in homepage
 wp_register_script('bte_text_changer', get_template_directory_uri() . '/js/text_changer.js', null, null, true);
+
+// Registro gli stili
+// Post styles
+wp_register_style('bte_post_style', get_template_directory_uri() . '/style/content.css');
+// Faqs styles
+wp_register_style('bte_faq_style', get_template_directory_uri() . '/style/faq.css', array('bte_post_style'));
+?>

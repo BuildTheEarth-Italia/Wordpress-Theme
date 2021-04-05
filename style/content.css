@@ -1,0 +1,160 @@
+/* Post content */
+article.card.postContent {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 50px 0px;
+  background-color: white;
+  min-height: 55vh;
+}
+
+article.card.postContent > * {
+  margin: 25px 25%;
+}
+
+article.card.postContent .post-title {
+  font-weight: 400;
+  font-size: 46px;
+}
+
+article.card.postContent .post-content > * {
+  margin: 10px auto;
+  width: 100%;
+}
+
+article.card.postContent .post-content > *.wp-block-quote {
+  margin-right: 50px;
+  margin-left: 40px;
+  padding: 2px 0 2px 15px;
+  border-left: hsla(var(--accent-hue), 60%, 50%, 0.6) solid 8px;
+}
+
+article.card.postContent .post-content > * strong {
+  background: -webkit-gradient(linear, left top, left bottom, from(0), color-stop(40%, hsla(var(--accent-hue), 60%, 50%, 0.6)), color-stop(0%, transparent));
+  background: linear-gradient(0, hsla(var(--accent-hue), 60%, 50%, 0.6) 40%, transparent 0%);
+  font-weight: normal;
+}
+
+article.card.postContent .post-content > *.wp-block-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+article.card.postContent .post-content > *.wp-block-image img {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+article.card.postContent .post-content > *.wp-block-image figcaption {
+  text-align: centerS;
+}
+
+article.card.postContent .post-categories {
+  list-style: none;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+article.card.postContent .post-categories .post-category {
+  padding: 2px 5px;
+  margin-right: 10px;
+  border-radius: 25px;
+  background-attachment: scroll;
+  background-image: none;
+  background-color: hsl(var(--accent-hue), 70%, 50%);
+}
+
+article.card.postContent .post-categories .post-category > a, article.card.postContent .post-categories .post-category > a:visited {
+  color: white;
+}
+
+article.card.postContent .post-author .author-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  vertical-align: middle;
+  margin-right: 15px;
+}
+
+article.card.postContent .post-author .author-info {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+article.card.postContent .post-author .author-info .author-name {
+  color: var(--text-color);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+article.card.postContent .post-author .author-info .author-description {
+  color: #555;
+  font-size: 12px;
+  font-style: italic;
+}
+
+/* Post comments */
+div.card.postComments {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+div.card.postComments > * {
+  margin: 25px 25%;
+}
+
+div.card.postComments h3.comments {
+  font-size: 64px;
+}
+
+div.card.postComments .post-content > * {
+  margin: 20px 0;
+}
+
+div.card.postComments .post-categories {
+  list-style: none;
+  padding: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+div.card.postComments .post-categories .post-category {
+  padding: 2px 5px;
+  margin-right: 10px;
+  border-radius: 25px;
+  background-attachment: scroll;
+}
+
+div.card.postComments .post-categories .post-category > a, div.card.postComments .post-categories .post-category > a:visited {
+  background: none;
+  color: var(--accent-text-color);
+}
+/*# sourceMappingURL=content.css.map */

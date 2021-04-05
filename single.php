@@ -1,4 +1,7 @@
 <?php
+	// Importo stile
+	wp_enqueue_style('bte_post_style');
+
 	//stampo header ma rimuovo titolo del sito
 	ob_start();
 	get_header();
@@ -11,7 +14,6 @@
 			get_template_part( 'content', get_post_format() );
 		}
 	}
-
 	
 	//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 	//COMMENTI DISATTIVATI PER DEFAULT!
