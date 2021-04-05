@@ -17,7 +17,7 @@
       </div>
     </div>
     <p class="credits">
-      Made with ❤️ by the <a href="https://github.com/BTE-Italia">BTE Italia team</a>
+      Made with ❤️ by the <a href="https://github.com/BuildTheEarth-Italia">BTE Italia team</a>
     </p>
   </footer>
 
