@@ -1,0 +1,23 @@
+.warn-block {
+  background: #faffaf;
+  color: black;
+  margin: 0 auto;
+  max-width: 80%;
+  padding: 15px 40px;
+  border-radius: 15px;
+}
+
+.warn-block .warn-icon {
+  font-size: 33px;
+  opacity: 0.5;
+}
+
+.warn-block .warn-content {
+  margin: 20px 0 0 0;
+}
+
+.warn-block .warn-content strong {
+  background: none !important;
+  font-weight: bold !important;
+}
+/*# sourceMappingURL=style.css.map */

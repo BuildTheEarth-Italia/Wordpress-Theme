@@ -77,9 +77,10 @@ function change_bte_theme_custom_background_cb() {
 
 
 /* ============================== */
-/* 	 	Pagina impostazioni 	  */
+/* 	   Impostazioni e blocchi 	  */
 /* ============================== */
 require(get_template_directory() . '/settings.php');
+require(get_template_directory() . '/blocks.php');
 
 
 /* ============================== */
