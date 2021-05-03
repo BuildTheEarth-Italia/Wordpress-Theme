@@ -1,7 +1,7 @@
 .warn-block {
   background: #faffaf;
   color: black;
-  margin: 0 auto;
+  margin: 25px auto !important;
   max-width: 80%;
   padding: 15px 40px;
   border-radius: 15px;
