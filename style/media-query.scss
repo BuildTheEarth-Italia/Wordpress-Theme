@@ -47,18 +47,20 @@
 
                 .description {
                     width: 100%;
-                    
+
                     line-height: 1.4;
                 }
             }
 
-            .image {
-                height: 250px;
-                width: 250px;
+            .model {
+                $dimension: 250px;
+                height: $dimension;
+                width: $dimension;
             }
         }
 
-        & > .box, &.reverse > .box {
+        & > .box,
+        &.reverse > .box {
             flex-direction: column-reverse;
         }
     }
@@ -124,15 +126,19 @@
     /* ======================== */
     /*          Navbar          */
     /* ======================== */
-    .navbar .links {
+    .navbar .brand .name {
         display: none;
     }
 
     /* ======================== */
     /*          Welcome         */
     /* ======================== */
-    .welcomePanel + * {
-        margin-top: 75%;
+    .panel.welcomePanel {
+        top: 15%;
+
+        & + * {
+            margin-top: 75%;
+        }
     }
 
     /* ======================== */
@@ -142,14 +148,14 @@
         height: 660px;
 
         & > .box {
-
             .text {
                 margin-top: 55px;
             }
 
-            .image {
-                height: 180px;
-                width: 180px;
+            .model {
+                $dimension: 150px;
+                height: $dimension;
+                width: $dimension;
             }
         }
     }
@@ -163,7 +169,7 @@
         .media {
             display: none;
         }
-        
+
         .discordJoinButton {
             display: block;
         }
@@ -182,16 +188,15 @@
 /*       Width < 450px      */
 /* ======================== */
 @media screen and (max-width: 450px) {
-
     /* ======================== */
     /*          Welcome         */
     /* ======================== */
     .panel.welcomePanel {
-        & > h1 {
+        h1 {
             font-size: 38px;
         }
 
-        & > h2 {
+        h2 {
             font-size: 34px;
         }
     }
@@ -203,10 +208,9 @@
         height: 550px;
 
         & > .box {
-
             .text {
                 margin-top: 45px;
-                
+
                 .description {
                     font-size: 20px;
                 }
@@ -228,7 +232,7 @@
         .media {
             display: none;
         }
-        
+
         .discordJoinButton {
             display: block;
         }
@@ -258,7 +262,6 @@
 /*       Width < 440px      */
 /* ======================== */
 @media screen and (max-width: 440px) {
-
     /* ======================== */
     /*          Welcome         */
     /* ======================== */

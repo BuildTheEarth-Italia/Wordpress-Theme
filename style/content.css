@@ -30,12 +30,6 @@ article.card.postContent .post-content > *.wp-block-quote {
   border-left: hsla(var(--accent-hue), 60%, 50%, 0.6) solid 8px;
 }
 
-article.card.postContent .post-content > * strong {
-  background: -webkit-gradient(linear, left top, left bottom, from(0), color-stop(40%, hsla(var(--accent-hue), 60%, 50%, 0.6)), color-stop(0%, transparent));
-  background: linear-gradient(0, hsla(var(--accent-hue), 60%, 50%, 0.6) 40%, transparent 0%);
-  font-weight: normal;
-}
-
 article.card.postContent .post-content > *.wp-block-image {
   display: -webkit-box;
   display: -ms-flexbox;

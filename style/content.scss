@@ -27,11 +27,6 @@ article.card.postContent {
             padding: 2px 0 2px 15px;
             border-left: hsla(var(--accent-hue), 60%, 50%, 0.6) solid 8px;
         }
-
-        strong {
-            background: linear-gradient(0, hsla(var(--accent-hue), 60%, 50%, 0.6) 40%, transparent 0%);
-            font-weight: normal;
-        }
         
         &.wp-block-image {
             display: flex;
