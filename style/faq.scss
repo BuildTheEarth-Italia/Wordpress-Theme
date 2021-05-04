@@ -47,6 +47,15 @@ article.card.postContent {
                 flex: 0 1 5%;
             }
         }
+
+        h3 {
+            margin-top: 25px;
+            margin-bottom: -5px;
+        }
+
+        & > * {
+            line-height: 25px;
+        }
     }
 
     .need-more-help {

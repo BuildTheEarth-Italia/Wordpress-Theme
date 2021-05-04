@@ -50,6 +50,15 @@ article.card.postContent .post-content h2::before {
           flex: 0 1 5%;
 }
 
+article.card.postContent .post-content h3 {
+  margin-top: 25px;
+  margin-bottom: -5px;
+}
+
+article.card.postContent .post-content > * {
+  line-height: 25px;
+}
+
 article.card.postContent .need-more-help {
   margin-top: 100px;
 }
