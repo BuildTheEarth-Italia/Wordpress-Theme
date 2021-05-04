@@ -537,25 +537,25 @@ a:visited, a:hover {
           flex-direction: row;
 }
 
-.navbar .menu .menu-item {
+.navbar .menu li {
   list-style-type: none;
   margin-right: 10px;
   font-weight: lighter;
   font-size: 16px;
 }
 
-.navbar .menu .menu-item * {
+.navbar .menu li * {
   text-decoration: none;
   color: var(--text-color);
   -webkit-transition: color 0.5s;
   transition: color 0.5s;
 }
 
-.navbar .menu .menu-item:hover {
+.navbar .menu li:hover {
   color: var(--accent-text-color-hover);
 }
 
-.navbar .menu .menu-item.active {
+.navbar .menu li.active {
   background: -webkit-gradient(linear, left top, left bottom, color-stop(70%, transparent), color-stop(0%, var(--accent-background-color)));
   background: linear-gradient(to bottom, transparent 70%, var(--accent-background-color) 0%);
   background-size: 100% 40%;
@@ -663,5 +663,238 @@ a:visited, a:hover {
   text-align: center;
   font-weight: lighter;
   font-size: 85%;
+}
+
+/* ======================== */
+/*      Media Queries       */
+/* ======================== */
+/* ======================== */
+/*      Width < 1600px      */
+/* ======================== */
+@media screen and (max-width: 1600px) {
+  /* ======================== */
+  /*          Navbar          */
+  /* ======================== */
+  .navbar .links {
+    min-width: 25%;
+  }
+  /* ======================== */
+  /*       Common Panel       */
+  /* ======================== */
+  .panel.commonPanel > .box {
+    width: 50%;
+  }
+}
+
+/* ======================== */
+/*      Width < 1430px      */
+/* ======================== */
+@media screen and (max-width: 1430px) {
+  /* ======================== */
+  /*          Navbar          */
+  /* ======================== */
+  .navbar .links {
+    min-width: 30%;
+  }
+  /* ======================== */
+  /*       Common Panel       */
+  /* ======================== */
+  .panel.commonPanel {
+    height: 650px;
+  }
+  .panel.commonPanel > .box {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .panel.commonPanel > .box .text {
+    margin-top: 50px;
+  }
+  .panel.commonPanel > .box .text * {
+    text-align: center;
+  }
+  .panel.commonPanel > .box .text .description {
+    width: 100%;
+    line-height: 1.4;
+  }
+  .panel.commonPanel > .box .image {
+    height: 250px;
+    width: 250px;
+  }
+  .panel.commonPanel > .box, .panel.commonPanel.reverse > .box {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: reverse;
+        -ms-flex-direction: column-reverse;
+            flex-direction: column-reverse;
+  }
+}
+
+/* ======================== */
+/*      Width < 1150px      */
+/* ======================== */
+@media screen and (max-width: 1150px) {
+  /* ======================== */
+  /*          Navbar          */
+  /* ======================== */
+  .navbar .links {
+    min-width: 35%;
+  }
+  /* ======================== */
+  /*          Welcome         */
+  /* ======================== */
+  .welcomePanel + * {
+    margin-top: 50%;
+  }
+  /* ======================== */
+  /*       Special Panel      */
+  /* ======================== */
+  .panel.textMediaPanel > .box {
+    width: 55%;
+  }
+}
+
+/* ======================== */
+/*       Width < 930px      */
+/* ======================== */
+@media screen and (max-width: 930px) {
+  /* ======================== */
+  /*          Navbar          */
+  /* ======================== */
+  .navbar .links {
+    min-width: 40%;
+  }
+  .navbar .brand .name {
+    font-size: 21px;
+  }
+  /* ======================== */
+  /*       Gallery Panel      */
+  /* ======================== */
+  .panel.galleryPanel > .box .gallery .slider .media {
+    margin-left: 0;
+  }
+}
+
+/* ======================== */
+/*       Width < 750px      */
+/* ======================== */
+@media screen and (max-width: 750px) {
+  /* ======================== */
+  /*          Navbar          */
+  /* ======================== */
+  .navbar .links {
+    display: none;
+  }
+  /* ======================== */
+  /*          Welcome         */
+  /* ======================== */
+  .welcomePanel + * {
+    margin-top: 75%;
+  }
+  /* ======================== */
+  /*       Common Panel       */
+  /* ======================== */
+  .panel.commonPanel {
+    height: 660px;
+  }
+  .panel.commonPanel > .box .text {
+    margin-top: 55px;
+  }
+  .panel.commonPanel > .box .image {
+    height: 180px;
+    width: 180px;
+  }
+  /* ======================== */
+  /*       Special Panel      */
+  /* ======================== */
+  .panel.textMediaPanel {
+    height: 350px;
+  }
+  .panel.textMediaPanel .media {
+    display: none;
+  }
+  .panel.textMediaPanel .discordJoinButton {
+    display: block;
+  }
+  /* ======================== */
+  /*       Gallery Panel      */
+  /* ======================== */
+  .panel.galleryPanel > .box .gallery .slider .media {
+    height: 210px;
+    margin-left: -5px;
+  }
+}
+
+/* ======================== */
+/*       Width < 450px      */
+/* ======================== */
+@media screen and (max-width: 450px) {
+  /* ======================== */
+  /*          Welcome         */
+  /* ======================== */
+  .panel.welcomePanel > h1 {
+    font-size: 38px;
+  }
+  .panel.welcomePanel > h2 {
+    font-size: 34px;
+  }
+  /* ======================== */
+  /*       Common Panel       */
+  /* ======================== */
+  .panel.commonPanel {
+    height: 550px;
+  }
+  .panel.commonPanel > .box .text {
+    margin-top: 45px;
+  }
+  .panel.commonPanel > .box .text .description {
+    font-size: 20px;
+  }
+  .panel.commonPanel > .box .image {
+    height: 120px;
+    width: 120px;
+  }
+  /* ======================== */
+  /*       Special Panel      */
+  /* ======================== */
+  .panel.textMediaPanel {
+    height: 350px;
+  }
+  .panel.textMediaPanel .media {
+    display: none;
+  }
+  .panel.textMediaPanel .discordJoinButton {
+    display: block;
+  }
+  /* ======================== */
+  /*       Gallery Panel      */
+  /* ======================== */
+  .panel.galleryPanel {
+    height: 340px;
+  }
+  .panel.galleryPanel > .box .gallery .slider .media {
+    height: 140px;
+    margin-left: -15px;
+  }
+  /* ======================== */
+  /*          Footer          */
+  /* ======================== */
+  .footer .box .brand .name {
+    font-size: 20px;
+  }
+}
+
+/* ======================== */
+/*       Width < 440px      */
+/* ======================== */
+@media screen and (max-width: 440px) {
+  /* ======================== */
+  /*          Welcome         */
+  /* ======================== */
+  .panel.welcomePanel > h2 {
+    font-size: 28px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

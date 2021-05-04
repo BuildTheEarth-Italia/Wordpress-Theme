@@ -1,0 +1,268 @@
+/* ======================== */
+/*      Width < 1600px      */
+/* ======================== */
+@media screen and (max-width: 1600px) {
+    /* ======================== */
+    /*          Navbar          */
+    /* ======================== */
+    .navbar .links {
+        min-width: 25%;
+    }
+
+    /* ======================== */
+    /*       Common Panel       */
+    /* ======================== */
+    .panel.commonPanel > .box {
+        width: 50%;
+    }
+}
+
+/* ======================== */
+/*      Width < 1430px      */
+/* ======================== */
+@media screen and (max-width: 1430px) {
+    /* ======================== */
+    /*          Navbar          */
+    /* ======================== */
+    .navbar .links {
+        min-width: 30%;
+    }
+
+    /* ======================== */
+    /*       Common Panel       */
+    /* ======================== */
+    .panel.commonPanel {
+        height: 650px;
+
+        & > .box {
+            justify-content: center;
+            align-items: center;
+
+            .text {
+                margin-top: 50px;
+
+                * {
+                    text-align: center;
+                }
+
+                .description {
+                    width: 100%;
+                    
+                    line-height: 1.4;
+                }
+            }
+
+            .image {
+                height: 250px;
+                width: 250px;
+            }
+        }
+
+        & > .box, &.reverse > .box {
+            flex-direction: column-reverse;
+        }
+    }
+}
+
+/* ======================== */
+/*      Width < 1150px      */
+/* ======================== */
+@media screen and (max-width: 1150px) {
+    /* ======================== */
+    /*          Navbar          */
+    /* ======================== */
+    .navbar .links {
+        min-width: 35%;
+    }
+
+    /* ======================== */
+    /*          Welcome         */
+    /* ======================== */
+    .welcomePanel + * {
+        margin-top: 50%;
+    }
+
+    /* ======================== */
+    /*       Special Panel      */
+    /* ======================== */
+    .panel.textMediaPanel {
+        & > .box {
+            width: 55%;
+        }
+    }
+}
+
+/* ======================== */
+/*       Width < 930px      */
+/* ======================== */
+@media screen and (max-width: 930px) {
+    /* ======================== */
+    /*          Navbar          */
+    /* ======================== */
+    .navbar {
+        .links {
+            min-width: 40%;
+        }
+
+        .brand .name {
+            font-size: 21px;
+        }
+    }
+
+    /* ======================== */
+    /*       Gallery Panel      */
+    /* ======================== */
+    .panel.galleryPanel > .box .gallery .slider .media {
+        margin-left: 0;
+    }
+}
+
+/* ======================== */
+/*       Width < 750px      */
+/* ======================== */
+@media screen and (max-width: 750px) {
+    /* ======================== */
+    /*          Navbar          */
+    /* ======================== */
+    .navbar .links {
+        display: none;
+    }
+
+    /* ======================== */
+    /*          Welcome         */
+    /* ======================== */
+    .welcomePanel + * {
+        margin-top: 75%;
+    }
+
+    /* ======================== */
+    /*       Common Panel       */
+    /* ======================== */
+    .panel.commonPanel {
+        height: 660px;
+
+        & > .box {
+
+            .text {
+                margin-top: 55px;
+            }
+
+            .image {
+                height: 180px;
+                width: 180px;
+            }
+        }
+    }
+
+    /* ======================== */
+    /*       Special Panel      */
+    /* ======================== */
+    .panel.textMediaPanel {
+        height: 350px;
+
+        .media {
+            display: none;
+        }
+        
+        .discordJoinButton {
+            display: block;
+        }
+    }
+
+    /* ======================== */
+    /*       Gallery Panel      */
+    /* ======================== */
+    .panel.galleryPanel > .box .gallery .slider .media {
+        height: 210px;
+        margin-left: -5px;
+    }
+}
+
+/* ======================== */
+/*       Width < 450px      */
+/* ======================== */
+@media screen and (max-width: 450px) {
+
+    /* ======================== */
+    /*          Welcome         */
+    /* ======================== */
+    .panel.welcomePanel {
+        & > h1 {
+            font-size: 38px;
+        }
+
+        & > h2 {
+            font-size: 34px;
+        }
+    }
+
+    /* ======================== */
+    /*       Common Panel       */
+    /* ======================== */
+    .panel.commonPanel {
+        height: 550px;
+
+        & > .box {
+
+            .text {
+                margin-top: 45px;
+                
+                .description {
+                    font-size: 20px;
+                }
+            }
+
+            .image {
+                height: 120px;
+                width: 120px;
+            }
+        }
+    }
+
+    /* ======================== */
+    /*       Special Panel      */
+    /* ======================== */
+    .panel.textMediaPanel {
+        height: 350px;
+
+        .media {
+            display: none;
+        }
+        
+        .discordJoinButton {
+            display: block;
+        }
+    }
+
+    /* ======================== */
+    /*       Gallery Panel      */
+    /* ======================== */
+    .panel.galleryPanel {
+        height: 340px;
+
+        & > .box .gallery .slider .media {
+            height: 140px;
+            margin-left: -15px;
+        }
+    }
+
+    /* ======================== */
+    /*          Footer          */
+    /* ======================== */
+    .footer .box .brand .name {
+        font-size: 20px;
+    }
+}
+
+/* ======================== */
+/*       Width < 440px      */
+/* ======================== */
+@media screen and (max-width: 440px) {
+
+    /* ======================== */
+    /*          Welcome         */
+    /* ======================== */
+    .panel.welcomePanel > h2 {
+        font-size: 28px;
+    }
+}
