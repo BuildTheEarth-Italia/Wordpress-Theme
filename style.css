@@ -249,8 +249,8 @@ a:visited, a:hover {
 }
 
 .panel.commonPanel .model {
-  height: 400px;
-  width: 400px;
+  height: 300px;
+  width: 300px;
   background: var(--background-color);
 }
 
