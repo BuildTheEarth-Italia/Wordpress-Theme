@@ -1,4 +1,10 @@
 </main>
+
+<?php
+  // Includo dashicons
+  wp_enqueue_script('dashicons');
+?>
+
 <footer class="footer">
     <div class="box">
       <div class="brand">
@@ -8,12 +14,12 @@
       <div id="contacts" class="contacts">
         <p>Contatti:</p>
         <div class="link">
-          <i class="fas fa-envelope"></i>
+          <span class="dashicons dashicons-email"></span>
           <a href="mailto:bteitalia@gmail.com">Email</a>
         </div>
         <div class="link">
-          <i class="fab fa-discord"></i>
-          <a href="https://discord.com/invite/dMahHCH">Discord</a>
+          <img src="<?= get_template_directory_uri(); ?>/resources/Discord-Logo.svg" alt="Discord Logo" height="20px" width="22px" />
+          <a href="https://discord.com/invite/dMahHCH">Discord</a> 
         </div>
       </div>
     </div>
