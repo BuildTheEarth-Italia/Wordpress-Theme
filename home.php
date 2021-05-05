@@ -27,7 +27,7 @@ if (count($photos) > 0)
         <h1 class="title">Chi siamo</h1>
         <p class="description"><i>Build The Earth Italia</i> &egrave; una community che nasce durante il Lockdown <wbr>per gestire il progetto <abbr translate="no" title="Build The Earth">BTE</abbr> nella nostra nazione 🇮🇹.</p>
       </div>
-      <img class="model rounded" src="<?= get_template_directory_uri(); ?>/resources/castelloCornedoSquared.png" alt="Castello di Cornedo in Minecraft"></div>
+      <img class="model rounded" src="<?= get_template_directory_uri(); ?>/resources/castelloCornedoSquared.png" alt="Castello di Cornedo in Minecraft" loading="lazy"></div>
     </div>
   </section>
 
@@ -37,7 +37,7 @@ if (count($photos) > 0)
         <h1 class="title">Il nostro progetto</h1>
         <p class="description">Noi di <i><abbr translate="no" title="Build The Earth">BTE</abbr> Italia</i> ci occupiamo di portare avanti un ambizioso progetto, <wbr>quello di ricostruire la Terra in scala reale su Minecraft, <wbr>direttamente dal proprio PC!</p>
       </div>
-      <img class="model rounded" src="<?= get_template_directory_uri(); ?>/resources/ponteSquared.png" alt="Ponte in Minecraft"></div>
+      <img class="model rounded" src="<?= get_template_directory_uri(); ?>/resources/ponteSquared.png" alt="Ponte in Minecraft" loading="lazy"></div>
     </div>
   </section>
 
@@ -47,7 +47,7 @@ if (count($photos) > 0)
         <h1 class="title">Perch&eacute;?</h1>
         <p class="description">Con l'avvento di Internet possiamo scoprire nuove culture, idee e persone. <wbr>Proprio su questo si basa <i><abbr translate="no" title="Build The Earth">BTE</abbr> Italia</i>, mostrare le bellezze dell'Italia agli altri.</p>
       </div>
-      <img class="model rounded" src="<?= get_template_directory_uri(); ?>/resources/centroCommercialeSquared.png" alt="Centro commerciale in Minecraft"></div>
+      <img class="model rounded" src="<?= get_template_directory_uri(); ?>/resources/centroCommercialeSquared.png" alt="Centro commerciale in Minecraft" loading="lazy"></div>
     </div>
   </section>
 
