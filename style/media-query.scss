@@ -161,6 +161,13 @@
     }
 
     /* ======================== */
+    /*       Post Content       */
+    /* ======================== */
+    article.card.postContent > * {
+        margin: 25px 15%;
+    }
+
+    /* ======================== */
     /*       Special Panel      */
     /* ======================== */
     .panel.textMediaPanel {
