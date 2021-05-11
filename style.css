@@ -792,7 +792,7 @@ a:visited, a:hover {
   /*          Welcome         */
   /* ======================== */
   .panel.welcomePanel {
-    top: 15%;
+    top: 21%;
   }
   .panel.welcomePanel + * {
     margin-top: 75%;
@@ -840,15 +840,30 @@ a:visited, a:hover {
 /* ======================== */
 /*       Width < 450px      */
 /* ======================== */
+@media screen and (max-width: 640px) {
+  /* ======================== */
+  /*          Welcome         */
+  /* ======================== */
+  .panel.welcomePanel h1.staticText {
+    font-size: 46px;
+  }
+  .panel.welcomePanel h2.dynamicText {
+    font-size: 30px;
+  }
+}
+
+/* ======================== */
+/*       Width < 450px      */
+/* ======================== */
 @media screen and (max-width: 450px) {
   /* ======================== */
   /*          Welcome         */
   /* ======================== */
-  .panel.welcomePanel h1 {
-    font-size: 38px;
+  .panel.welcomePanel h1.staticText {
+    font-size: 46px;
   }
-  .panel.welcomePanel h2 {
-    font-size: 34px;
+  .panel.welcomePanel h2.dynamicText {
+    font-size: 30px;
   }
   /* ======================== */
   /*       Common Panel       */

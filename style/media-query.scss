@@ -134,7 +134,7 @@
     /*          Welcome         */
     /* ======================== */
     .panel.welcomePanel {
-        top: 15%;
+        top: 21%;
 
         & + * {
             margin-top: 75%;
@@ -194,17 +194,31 @@
 /* ======================== */
 /*       Width < 450px      */
 /* ======================== */
+@media screen and (max-width: 640px) {
+    /* ======================== */
+    /*          Welcome         */
+    /* ======================== */
+    .panel.welcomePanel {
+        h2.dynamicText {
+            font-size: 46px;
+        }
+    }
+}
+
+/* ======================== */
+/*       Width < 450px      */
+/* ======================== */
 @media screen and (max-width: 450px) {
     /* ======================== */
     /*          Welcome         */
     /* ======================== */
     .panel.welcomePanel {
-        h1 {
-            font-size: 38px;
+        h1.staticText {
+            font-size: 46px;
         }
 
-        h2 {
-            font-size: 34px;
+        h2.dynamicText {
+            font-size: 30px;
         }
     }
 
