@@ -21,6 +21,7 @@ article.card.postContent .post-title {
 article.card.postContent .post-content > * {
   margin: 20px auto;
   width: 100%;
+  line-height: 25px;
 }
 
 article.card.postContent .post-content > *.wp-block-quote {
@@ -77,6 +78,10 @@ article.card.postContent .post-categories .post-category {
 article.card.postContent .post-categories .post-category > a, article.card.postContent .post-categories .post-category > a:visited {
   background: none;
   color: white;
+}
+
+article.card.postContent .post-author {
+  margin-top: 45px;
 }
 
 article.card.postContent .post-author .author-img {
