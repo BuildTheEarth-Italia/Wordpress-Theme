@@ -844,11 +844,8 @@ a:visited, a:hover {
   /* ======================== */
   /*          Welcome         */
   /* ======================== */
-  .panel.welcomePanel h1.staticText {
-    font-size: 46px;
-  }
   .panel.welcomePanel h2.dynamicText {
-    font-size: 30px;
+    font-size: 46px;
   }
 }
 
