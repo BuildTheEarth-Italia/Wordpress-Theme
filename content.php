@@ -32,8 +32,8 @@
         echo '</a>';
     }
     
-    ob_start();
+    /*ob_start();
     the_category();
-    echo str_replace('<li>', '<li class="post-category custom-background lax" data-lax-bg-pos-y="(vh*1.02) -20, (vh*1.72) 0">', ob_get_clean());
+    echo str_replace('<li>', '<li class="post-category custom-background lax" data-lax-bg-pos-y="(vh*1.02) -20, (vh*1.72) 0">', ob_get_clean());*/
     ?>
 </article>

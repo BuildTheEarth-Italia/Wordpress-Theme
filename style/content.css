@@ -75,6 +75,7 @@ article.card.postContent .post-categories .post-category {
 }
 
 article.card.postContent .post-categories .post-category > a, article.card.postContent .post-categories .post-category > a:visited {
+  background: none;
   color: white;
 }
 

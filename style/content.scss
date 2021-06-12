@@ -58,6 +58,7 @@ article.card.postContent {
             background-color: hsl(var(--accent-hue), 70%, 50%); 
         
             & > a, & > a:visited {
+                background: none;
                 color: hsl(0, 0%, 100%);
             }
         }
