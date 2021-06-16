@@ -2,6 +2,7 @@
 .panel.pointsPanel {
     flex-direction: column;
     height: auto;
+    min-height: 500px;
     padding-bottom: 15px;
 
     .post-title {

@@ -112,6 +112,7 @@ article.card.postContent .post-author .author-info .author-description {
   color: #555;
   font-size: 12px;
   font-style: italic;
+  line-height: 20px;
 }
 
 /* Post comments */
