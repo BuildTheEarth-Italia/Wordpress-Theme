@@ -39,11 +39,11 @@
 .panel.pointsPanel .table-wrapper table td {
   border-collapse: collapse;
   border-spacing: 0;
+  padding: 10px 0;
 }
 
 .panel.pointsPanel .table-wrapper table td {
   border: 1px #0002 solid;
-  padding: 10px 0;
 }
 
 .panel.pointsPanel .table-wrapper table th {

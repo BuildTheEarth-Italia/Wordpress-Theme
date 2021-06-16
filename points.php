@@ -4,6 +4,8 @@ Template Name: Punti classifica
 Template Post Type: page
 */
 
+define('DONOTCACHEPAGE', true);
+
 //stampo header
 get_header();
 
@@ -56,11 +58,13 @@ sort_list($leaderboard);
     </div>
     <div class="buttons">
         <?php
+        $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
+
         if ($start >= 20)
-            echo '<a href="?start=' . ($start - 20 - $start % 20) . '" class="prev">Precedente</a>';
+            echo '<a href="' . $uri_parts . '?start=' . ($start - 20 - $start % 20) . '" class="prev">Precedente</a>';
 
         if ($start + 20 <= count($leaderboard))
-            echo '<a href="?start=' . ($start + 20 - $start % 20) . '" class="next">Successivo</a>';
+            echo '<a href="' .  $uri_parts . '?start=' . ($start + 20 - $start % 20) . '" class="next">Successivo</a>';
         ?>
     </div>
 </section>
