@@ -201,4 +201,6 @@ wp_register_script('bte_text_changer', get_template_directory_uri() . '/js/text_
 wp_register_style('bte_post_style', get_template_directory_uri() . '/style/content.css');
 // Faqs styles
 wp_register_style('bte_faq_style', get_template_directory_uri() . '/style/faq.css', array('bte_post_style'));
+// Stile per classifica
+wp_register_style('bte_points_style', get_template_directory_uri() . '/style/points.css');
 ?>

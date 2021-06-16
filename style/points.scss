@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+.panel.pointsPanel {
+    flex-direction: column;
+    height: auto;
+    padding-bottom: 15px;
+
+    .post-title {
+        font-weight: 400;
+        font-size: 46px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .post-content {
+        margin-bottom: 25px;
+        max-width: 40%;
+        text-align: center;
+    }
+
+    .table-wrapper {
+        width: 40%;
+        border-radius: 25px;
+
+        table {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+
+            &,
+            & th,
+            & td {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+
+            td {
+                border: 1px #0002 solid;
+                padding: 10px 0;
+            }
+
+            th {
+                border: 1px var(--accent-background-color) solid;
+                color: var(--accent-text-color);
+            }
+
+            tbody tr {
+                &:nth-child(2n + 1) {
+                    background: #f7f7f7;
+                }
+            }
+        }
+
+        .table-head {
+            background-color: var(--accent-background-color);
+            border: none;
+            height: 40px;
+        }
+
+        .rank {
+            font-family: "montserrat", "nunito", sans-serif;
+            font-style: italic;
+        }
+
+        .rank,
+        .points {
+            text-align: center;
+        }
+
+        .username {
+            text-align: left;
+            padding-left: 15px;
+
+            .avatar {
+                display: inline-block;
+                margin-right: 15px;
+                height: 25px;
+                width: 25px;
+                border-radius: 3px;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 38%;
+        padding: 15px 0;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .panel.pointsPanel {
+        .table-wrapper,
+        .post-title,
+        .post-content {
+            width: 80%;
+        }
+
+        .buttons {
+            width: 78%;
+        }
+    }
+}
