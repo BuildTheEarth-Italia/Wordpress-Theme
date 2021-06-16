@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap");
+.panel.pointsPanel {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: auto;
+  padding-bottom: 15px;
+}
+
+.panel.pointsPanel .post-title {
+  font-weight: 400;
+  font-size: 46px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.panel.pointsPanel .post-content {
+  margin-bottom: 25px;
+  max-width: 40%;
+  text-align: center;
+}
+
+.panel.pointsPanel .table-wrapper {
+  width: 40%;
+  border-radius: 25px;
+}
+
+.panel.pointsPanel .table-wrapper table {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.panel.pointsPanel .table-wrapper table,
+.panel.pointsPanel .table-wrapper table th,
+.panel.pointsPanel .table-wrapper table td {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.panel.pointsPanel .table-wrapper table td {
+  border: 1px #0002 solid;
+  padding: 10px 0;
+}
+
+.panel.pointsPanel .table-wrapper table th {
+  border: 1px var(--accent-background-color) solid;
+  color: var(--accent-text-color);
+}
+
+.panel.pointsPanel .table-wrapper table tbody tr:nth-child(2n + 1) {
+  background: #f7f7f7;
+}
+
+.panel.pointsPanel .table-wrapper .table-head {
+  background-color: var(--accent-background-color);
+  border: none;
+  height: 40px;
+}
+
+.panel.pointsPanel .table-wrapper .rank {
+  font-family: "montserrat", "nunito", sans-serif;
+  font-style: italic;
+}
+
+.panel.pointsPanel .table-wrapper .rank,
+.panel.pointsPanel .table-wrapper .points {
+  text-align: center;
+}
+
+.panel.pointsPanel .table-wrapper .username {
+  text-align: left;
+  padding-left: 15px;
+}
+
+.panel.pointsPanel .table-wrapper .username .avatar {
+  display: inline-block;
+  margin-right: 15px;
+  height: 25px;
+  width: 25px;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.panel.pointsPanel .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 38%;
+  padding: 15px 0;
+}
+
+@media screen and (max-width: 1280px) {
+  .panel.pointsPanel .table-wrapper,
+  .panel.pointsPanel .post-title,
+  .panel.pointsPanel .post-content {
+    width: 80%;
+  }
+  .panel.pointsPanel .buttons {
+    width: 78%;
+  }
+}
+/*# sourceMappingURL=points.css.map */
