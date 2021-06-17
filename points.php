@@ -12,18 +12,34 @@ get_header();
 // Importo stile
 wp_enqueue_style('bte_points_style');
 
-const points_url = 'http://bteitalia.it:8000/points';
+define('URL', 'http://bteitalia.it:8000');
 
 // Prendo l'indice di partenza
 $start = isset($_GET['start']) ? $_GET['start'] : 0;
 
 // Ottengo la lista dei punti
 $leaderboard = json_decode(
-    file_get_contents(points_url)
-)->Leaderboard;
+    file_get_contents(URL . '/points')
+);
 
-// Ordino la lista per numero di punti
-sort_list($leaderboard);
+if ($leaderboard != null) {
+    $leaderboard = $leaderboard->Leaderboard;
+
+    // Ordino la lista per numero di punti
+    sort_list($leaderboard);
+}
+
+// Ottengo la lista dei ruoli
+$permissions = json_decode(
+    file_get_contents(URL . '/permissions')
+);
+
+if ($permissions != null) {
+    $permissions = $permissions->groups;
+
+    // Ordino la lista e rimuovo i ruoli inutili per la classifica
+    remove_ignored_roles($permissions);
+}
 
 ?>
 <div class="grass"></div>
@@ -42,15 +58,40 @@ sort_list($leaderboard);
             <tbody class="table-body">
                 <?php
                 // Itero tutti gli elementi
-                for ($i = $start; $i < $start + 20 && $i < count($leaderboard); $i++) {
+                if ($leaderboard != null)
+                    for ($i = $start; $i < $start + 20 && $i < count($leaderboard); $i++) {
+
+                        // Ottengo il gruppo a cui il player appartiene
+                        $role_class = get_role_class($leaderboard[$i], $permissions);
                 ?>
                     <tr data-index="<?= $i; ?>">
                         <td class="rank"><?= $i + 1; ?></td>
-                        <td class="username"><img class="avatar" src="https://www.mc-heads.net/avatar/<?= $leaderboard[$i]->name; ?>/25/" onerror="this.src='https:\/\/www.mc-heads.net\/avatar\/MHF_steve';"><span class="name"><?= $leaderboard[$i]->name; ?></span></td>
+                        <td class="username bubble-hover-trigger">
+                            <img class="avatar" loading="lazy" src="https://www.mc-heads.net/avatar/<?= $leaderboard[$i]->name; ?>/25/" onerror="this.src='https:\/\/www.mc-heads.net\/avatar\/MHF_steve\/25\/';">
+                            <span class="name bubble-wrapper">
+                                <span class="<?= $role_class; ?>"><?= $leaderboard[$i]->name; ?></span>
+                                <div class="bubble">
+                                    <img class="avatar" loading="lazy" src="https://www.mc-heads.net/avatar/<?= $leaderboard[$i]->name; ?>/80/" onerror="this.src='https:\/\/www.mc-heads.net\/avatar\/MHF_steve\/50';">
+                                    <h1 class="name <?= $role_class; ?>"><?= $leaderboard[$i]->name; ?></h1>
+                                    <div class="decorator">
+                                        <span class="decorator-title">Punti</span>
+                                        <span class="decorator-value"><?= $leaderboard[$i]->score; ?></span>
+                                    </div>
+                                    <div class="decorator">
+                                        <span class="decorator-title">Rank</span>
+                                        <span class="decorator-value <?= $role_class; ?>"><?= $role_class != null ? ucfirst(str_replace('role-', '', $role_class)) : "Starter"; ?></span>
+                                    </div>
+                                    <div class="decorator">
+                                        <span class="decorator-title">Nazione</span>
+                                        <span class="decorator-value"><?= get_national_flag($leaderboard[$i], $permissions); ?></span>
+                                    </div>
+                                </div>
+                            </span>
+                        </td>
                         <td class="points"><?= $leaderboard[$i]->score; ?></td>
                     </tr>
                 <?php
-                }
+                    }
                 ?>
                 </tr>
             </tbody>
@@ -87,4 +128,73 @@ function sort_list(&$list)
     usort($list, 'cmp');
 }
 
+function remove_ignored_roles(&$list)
+{
+    $newList = array();
+
+    foreach ($list as $role) {
+        switch ($role->name) {
+            case 'New':
+            case 'Event':
+            case 'default':
+            case 'collab':
+            case 'Twitch':
+            case 'starter':
+            case 'trainee':
+            case 'builder':
+            case 'yugoadmin':
+            case 'admin':
+            case 'moderator':
+                break;
+
+            default:
+                $newList[$role->name] = $role->members;
+        }
+    }
+
+    $list = $newList;
+}
+
+function get_role_class($user, $groups)
+{
+    if ($groups != null) {
+        $name = $user->name;
+
+        if (array_search($name, $groups['master']) !== false) {
+            return 'role-master';
+        } else if (array_search($name, $groups['expert']) !== false) {
+            return 'role-expert';
+        } else if (array_search($name, $groups['architect']) !== false) {
+            return 'role-architect';
+        }
+    }
+
+    $points = $user->score;
+    if ($points >= 2000) {
+        return 'role-expert';
+    } else if ($points >= 1250 && $points < 2000) {
+        return 'role-architect';
+    } else if ($points >= 750 && $points < 1250) {
+        return 'role-builder';
+    } else if ($points >= 250 && $points < 750) {
+        return 'role-trainee';
+    }
+
+    return null;
+}
+
+function get_national_flag($user, $groups)
+{
+    if($groups != null) {
+        $name = $user->name;
+
+        if (array_search($name, $groups['yugoslavia']) !== false) {
+            return '🇭🇷';
+        } else if (array_search($name, $groups['malta']) !== false) {
+            return '🇲🇹';
+        }
+    }
+
+    return '🇮🇹';
+}
 ?>
