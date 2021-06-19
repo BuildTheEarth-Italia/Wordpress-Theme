@@ -867,6 +867,7 @@ a:visited, a:hover {
   /* ======================== */
   .panel.commonPanel {
     height: 550px;
+    margin-top: -5px;
   }
   .panel.commonPanel > .box .text {
     margin-top: 45px;

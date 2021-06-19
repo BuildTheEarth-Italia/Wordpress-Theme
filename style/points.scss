@@ -20,7 +20,8 @@
 
     .table-wrapper {
         width: 40%;
-        border-radius: 25px;
+        border-radius: 9px;
+        box-shadow: 0 0 5px #0003;
 
         table {
             width: 100%;
@@ -37,7 +38,7 @@
             }
 
             td {
-                border: 1px #0002 solid;
+                border-top: 1px #0002 solid;
             }
 
             th {
@@ -119,7 +120,7 @@
 
                 position: absolute;
                 z-index: -1;
-                bottom: 125%;
+                bottom: 150%;
                 left: 50%;
                 transform: translateX(-50%);
 
@@ -143,11 +144,8 @@
                     left: 50%;
                     margin-left: -5px;
 
-                    // border-width: 5px;
-                    // border-style: solid;
-                    // border-color: var(--alt-background-color) transparent transparent transparent;
-                    border: 5px solid transparent;
-                    border-top: 5px solid var(--alt-background-color);
+                    border: 10px solid transparent;
+                    border-top: 10px solid var(--alt-background-color);
                 }
 
                 .avatar {
@@ -171,6 +169,7 @@
 
         .bubble-hover-trigger {
             &:hover .bubble-wrapper .bubble,
+            &.bubble-wrapper:hover .bubble,
             & .bubble-wrapper .bubble.open {
                 opacity: 1;
 
