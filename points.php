@@ -15,7 +15,11 @@ wp_enqueue_style('bte_points_style');
 define('URL', 'http://bteitalia.it:8000');
 
 // Prendo l'indice di partenza
-$start = isset($_GET['start']) ? $_GET['start'] : 0;
+$start = filter_input(INPUT_GET, 'start', FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
+
+// se l'input non è valido cado nel valore di default (zero)
+if($start === null || $start === false)
+    $start = 0;
 
 // Ottengo la lista dei punti
 $leaderboard = json_decode(
