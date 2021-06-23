@@ -203,4 +203,6 @@ wp_register_style('bte_post_style', get_template_directory_uri() . '/style/conte
 wp_register_style('bte_faq_style', get_template_directory_uri() . '/style/faq.css', array('bte_post_style'));
 // Stile per classifica
 wp_register_style('bte_points_style', get_template_directory_uri() . '/style/points.css');
+// Stile per lo showcase
+wp_register_style('bte_showcase_style', get_template_directory_uri() . '/style/showcase.css');
 ?>

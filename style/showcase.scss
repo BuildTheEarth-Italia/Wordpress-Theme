@@ -1,0 +1,56 @@
+.panel.showcasePanel {
+    flex-direction: column;
+    height: auto;
+    min-height: 500px;
+    padding-bottom: 15px;
+
+    .post-title {
+        font-weight: 400;
+        font-size: 46px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .post-content {
+        margin-bottom: 25px;
+        max-width: 40%;
+        text-align: center;
+    }
+
+    .showcase-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+
+        .media {
+            .image {
+                height: 388px;
+                min-width: 660px;
+
+                border-radius: 6px;
+                box-shadow: 0 0 5px #000a;
+            }
+
+            .caption {
+                text-align: center;
+
+                .image-title {
+                    font-weight: 400;
+                    margin-bottom: 5px;
+                }
+
+                .image-description {
+                    font-weight: 200;
+                    margin-top: 0;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 740px) {
+    .gallery .galleryItem .media {
+        height: 276px;
+        width: 470px;
+    }
+}
