@@ -74,7 +74,7 @@ if ($permissions != null) {
                             <img class="avatar" loading="lazy" src="https://www.mc-heads.net/avatar/<?= $leaderboard[$i]->name; ?>/25/" onerror="this.src='https:\/\/www.mc-heads.net\/avatar\/MHF_steve\/25\/';">
                             <span class="name bubble-wrapper">
                                 <span class="<?= $role_class; ?>"><?= $leaderboard[$i]->name; ?></span>
-                                <div class="bubble">
+                                <div class="bubble<?= ($i < $start + 3) ? ' upside-down' : ''; ?>">
                                     <img class="avatar" loading="lazy" src="https://www.mc-heads.net/avatar/<?= $leaderboard[$i]->name; ?>/80/" onerror="this.src='https:\/\/www.mc-heads.net\/avatar\/MHF_steve\/50';">
                                     <h1 class="name <?= $role_class; ?>"><?= $leaderboard[$i]->name; ?></h1>
                                     <div class="decorator">
