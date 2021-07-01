@@ -19,14 +19,15 @@ define('CACHE_MAX_LIFE', 'P2D'); // Default: P2D
 // URL Per le richieste al plugin https://github.com/BuildTheEarth-Italia/DataList
 define('URL', 'http://bteitalia.it:8000');
 
-$leaderboard = new stdClass();
+$leaderboard = array();
 $permissions = new stdClass();
+$playtime = new stdClass();
 
-$gotCachedData =  defined('CACHE_FILENAME') && defined('CACHE_MAX_LIFE') && obtainCachedDataIfAvailable($leaderboard, $permissions);
+$gotCachedData =  defined('CACHE_FILENAME') && defined('CACHE_MAX_LIFE') && obtainCachedDataIfAvailable($leaderboard, $permissions, $playtime);
 
 // Se non sono riuscito a caricare la cache carico le risorse "fresche"
 if (!$gotCachedData)
-    obtainFreshData($leaderboard, $permissions);
+    obtainFreshData($leaderboard, $permissions, $playtime);
 
 // Prendo l'indice di partenza
 $start = filter_input(INPUT_GET, 'start', FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
@@ -79,6 +80,15 @@ if ($start === null || $start === false)
                                         <span class="decorator-title">Nazione</span>
                                         <span class="decorator-value"><?= get_national_flag($leaderboard[$i], $permissions); ?></span>
                                     </div>
+                                    <?php
+                                    $currentPlayerPlaytime = $playtime->{$leaderboard[$i]->name};
+
+                                    if ($currentPlayerPlaytime !== null) { ?>
+                                        <div class="decorator playtime">
+                                            <span class="decorator-title">Tempo di gioco</span>
+                                            <span class="decorator-value"><?= $currentPlayerPlaytime; ?></span>
+                                        </div>
+                                    <?php } ?>
                                 </div>
                             </span>
                         </td>
@@ -111,7 +121,7 @@ get_footer();
 flush();
 
 if (!$gotCachedData)
-    saveFreshData($leaderboard, $permissions);
+    saveFreshData($leaderboard, $permissions, $playtime);
 
 function get_role_class($user, $groups)
 {
@@ -156,7 +166,7 @@ function get_national_flag($user, $groups)
     return '🇮🇹';
 }
 
-function obtainCachedDataIfAvailable(&$points, &$groups)
+function obtainCachedDataIfAvailable(&$points, &$groups, &$time)
 {
     $f = @fopen(CACHE_FILENAME, 'r');
 
@@ -182,14 +192,17 @@ function obtainCachedDataIfAvailable(&$points, &$groups)
     // Salvo i punti
     $points = $cachedData->points;
 
-    // e i ruoli
+    // i ruoli...
     $groups = $cachedData->groups;
+
+    // e il playtime
+    $time = $cachedData->playtime;
 
     // Ritorno con successo
     return true;
 }
 
-function obtainFreshData(&$points, &$groups)
+function obtainFreshData(&$points, &$groups, &$time)
 {
     // Ottengo la lista dei punti
     $tmpPoints = json_decode(
@@ -240,13 +253,45 @@ function obtainFreshData(&$points, &$groups)
         // Rimuovo la variabile temporanea
         unset($tmpGroups);
     }
+
+    // Ottengo la lista dei ruoli
+    $tmpPlaytime = json_decode(
+        file_get_contents(URL . '/playtime')
+    );
+
+    if ($tmpPlaytime != null) {
+        $tmpPlaytime = $tmpPlaytime->playtime;
+
+        // Ordino la lista e modifico il tempo di gioco
+        foreach ($tmpPlaytime as $entry) {
+            $t = $entry->ticks;
+
+            // Converto il tempo da ticks al formato "umano"
+            $seconds = (int) ($t / 20);
+            $minutes = (int) ($seconds / 60);
+            $hours = (int) ($minutes / 60);
+            $days = (int) ($hours / 24);
+
+            // Creo la stringa
+            if ($days > 0)
+                $time->{$entry->name} = $days . ' giorni, ';
+
+            $time->{$entry->name} .= $hours % 24 . ' ore, ';
+            $time->{$entry->name} .= $minutes % 60 . ' minuti e ';
+            $time->{$entry->name} .= $seconds % 60 . ' secondi';
+        }
+
+        // Rimuovo la variabile temporanea
+        unset($tmpPlaytime);
+    }
 }
 
-function saveFreshData($points, $groups)
+function saveFreshData($points, $groups, $time)
 {
     // Creo la cartella se non esiste
     wp_mkdir_p(dirname(CACHE_FILENAME));
 
+    // Apro il file cancellando tutto il contenuto
     $f = fopen(CACHE_FILENAME, 'w');
 
     // Se il file non puo essere creato ritorno false
@@ -258,7 +303,8 @@ function saveFreshData($points, $groups)
         array(
             'cacheDate' => time(),
             'points' => $points,
-            'groups' => $groups
+            'groups' => $groups,
+            'playtime' => $time
         )
     );
 

@@ -158,7 +158,7 @@
                         top: -($border-size * 2);
                         left: 50%;
                         margin-left: -($border-size / 2);
-    
+
                         border: $border-size solid transparent;
                         border-bottom: $border-size solid var(--alt-background-color);
                     }
@@ -178,6 +178,17 @@
 
                     .decorator-title {
                         font-weight: bold;
+                    }
+
+                    &.playtime {
+                        flex-direction: column;
+                        width: 80%;
+                        margin-top: 15px;
+
+                        .decorator-value {
+                            margin-top: 5px;
+                            font-weight: lighter;
+                        }
                     }
                 }
             }
