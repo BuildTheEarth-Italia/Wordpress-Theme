@@ -12,38 +12,28 @@ get_header();
 // Importo stile
 wp_enqueue_style('bte_points_style');
 
+// Path al file di cache e durata massima, se sono rimossi non verrà eseguita la cache
+define('CACHE_FILENAME', WP_CONTENT_DIR . '/cache/classifica-cached.json'); // Default: WP_CONTENT_DIR . '/cache/classifica-cached.json'
+define('CACHE_MAX_LIFE', 'P2D'); // Default: P2D
+
+// URL Per le richieste al plugin https://github.com/BuildTheEarth-Italia/DataList
 define('URL', 'http://bteitalia.it:8000');
+
+$leaderboard = new stdClass();
+$permissions = new stdClass();
+
+$gotCachedData =  defined('CACHE_FILENAME') && defined('CACHE_MAX_LIFE') && obtainCachedDataIfAvailable($leaderboard, $permissions);
+
+// Se non sono riuscito a caricare la cache carico le risorse "fresche"
+if (!$gotCachedData)
+    obtainFreshData($leaderboard, $permissions);
 
 // Prendo l'indice di partenza
 $start = filter_input(INPUT_GET, 'start', FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
 
 // se l'input non è valido cado nel valore di default (zero)
-if($start === null || $start === false)
+if ($start === null || $start === false)
     $start = 0;
-
-// Ottengo la lista dei punti
-$leaderboard = json_decode(
-    file_get_contents(URL . '/points')
-);
-
-if ($leaderboard != null) {
-    $leaderboard = $leaderboard->Leaderboard;
-
-    // Ordino la lista per numero di punti
-    sort_list($leaderboard);
-}
-
-// Ottengo la lista dei ruoli
-$permissions = json_decode(
-    file_get_contents(URL . '/permissions')
-);
-
-if ($permissions != null) {
-    $permissions = $permissions->groups;
-
-    // Ordino la lista e rimuovo i ruoli inutili per la classifica
-    remove_ignored_roles($permissions);
-}
 
 ?>
 <div class="grass"></div>
@@ -118,57 +108,21 @@ if ($permissions != null) {
 
 get_footer();
 
-function sort_list(&$list)
-{
-    function cmp($a, $b)
-    {
-        if ($a->score == $b->score) {
-            return 0;
-        }
+flush();
 
-        return ($a->score > $b->score) ? -1 : 1;
-    }
-
-    usort($list, 'cmp');
-}
-
-function remove_ignored_roles(&$list)
-{
-    $newList = array();
-
-    foreach ($list as $role) {
-        switch ($role->name) {
-            case 'New':
-            case 'Event':
-            case 'default':
-            case 'collab':
-            case 'Twitch':
-            case 'starter':
-            case 'trainee':
-            case 'builder':
-            case 'yugoadmin':
-            case 'admin':
-            case 'moderator':
-                break;
-
-            default:
-                $newList[$role->name] = $role->members;
-        }
-    }
-
-    $list = $newList;
-}
+if (!$gotCachedData)
+    saveFreshData($leaderboard, $permissions);
 
 function get_role_class($user, $groups)
 {
     if ($groups != null) {
         $name = $user->name;
 
-        if (array_search($name, $groups['master']) !== false) {
+        if (array_search($name, $groups->master) !== false) {
             return 'role-master';
-        } else if (array_search($name, $groups['expert']) !== false) {
+        } else if (array_search($name, $groups->expert) !== false) {
             return 'role-expert';
-        } else if (array_search($name, $groups['architect']) !== false) {
+        } else if (array_search($name, $groups->architect) !== false) {
             return 'role-architect';
         }
     }
@@ -189,16 +143,132 @@ function get_role_class($user, $groups)
 
 function get_national_flag($user, $groups)
 {
-    if($groups != null) {
+    if ($groups != null) {
         $name = $user->name;
 
-        if (array_search($name, $groups['yugoslavia']) !== false) {
+        if (array_search($name, $groups->yugoslavia) !== false) {
             return '🇭🇷';
-        } else if (array_search($name, $groups['malta']) !== false) {
+        } else if (array_search($name, $groups->malta) !== false) {
             return '🇲🇹';
         }
     }
 
     return '🇮🇹';
 }
+
+function obtainCachedDataIfAvailable(&$points, &$groups)
+{
+    $f = @fopen(CACHE_FILENAME, 'r');
+
+    // Se il file non esiste ritorno false
+    if ($f === false)
+        return false;
+
+    // Ottengo i dati dal JSON
+    $cachedData = json_decode(
+        fread($f, filesize(CACHE_FILENAME))
+    );
+
+    // Chiudo il file
+    fclose($f);
+
+    // Verifico che siano passati almeno 2 gorni
+    $isCacheExpired = DateTimeImmutable::createFromFormat('U', $cachedData->cacheDate)->add(new DateInterval(CACHE_MAX_LIFE)) < new DateTimeImmutable();
+
+    // Se la cache è scauta ritorno false
+    if ($isCacheExpired)
+        return false;
+
+    // Salvo i punti
+    $points = $cachedData->points;
+
+    // e i ruoli
+    $groups = $cachedData->groups;
+
+    // Ritorno con successo
+    return true;
+}
+
+function obtainFreshData(&$points, &$groups)
+{
+    // Ottengo la lista dei punti
+    $tmpPoints = json_decode(
+        file_get_contents(URL . '/points')
+    );
+
+    if ($tmpPoints != null) {
+        $tmpPoints = $tmpPoints->Leaderboard;
+
+        // Ordino la lista per numero di punti
+        function cmp($a, $b)
+        {
+            if ($a->score == $b->score) {
+                return 0;
+            }
+
+            return ($a->score > $b->score) ? -1 : 1;
+        }
+        usort($tmpPoints, 'cmp');
+
+        // Assegno il valore alla variabile globale
+        $points = $tmpPoints;
+        unset($tmpPoints);
+    }
+
+    // Ottengo la lista dei ruoli
+    $tmpGroups = json_decode(
+        file_get_contents(URL . '/permissions')
+    );
+
+    if ($tmpGroups != null) {
+        $tmpGroups = $tmpGroups->groups;
+
+        // Ordino la lista e rimuovo i ruoli inutili per la classifica
+        foreach ($tmpGroups as $role) {
+            switch ($role->name) {
+                case 'master':
+                case 'expert':
+                case 'architect':
+                case 'yugoslavia':
+                case 'malta':
+                    // Assegno il gruppo a variable locale
+                    $groups->{$role->name} = $role->members;
+                    break;
+            }
+        }
+
+        // Rimuovo la variabile temporanea
+        unset($tmpGroups);
+    }
+}
+
+function saveFreshData($points, $groups)
+{
+    // Creo la cartella se non esiste
+    wp_mkdir_p(dirname(CACHE_FILENAME));
+
+    $f = fopen(CACHE_FILENAME, 'w');
+
+    // Se il file non puo essere creato ritorno false
+    if ($f === false)
+        return false;
+
+    // Ottengo i dati dal JSON
+    $serializedCachedData = json_encode(
+        array(
+            'cacheDate' => time(),
+            'points' => $points,
+            'groups' => $groups
+        )
+    );
+
+    fwrite($f, $serializedCachedData);
+
+    // Chiudo il file
+    fclose($f);
+
+    // Ritorno con successo
+    return true;
+}
+
 ?>
