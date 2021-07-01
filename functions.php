@@ -193,8 +193,10 @@ wp_register_script('bte_script_admin_media', get_template_directory_uri() . '/js
 wp_register_script('bte_script_gallery', get_template_directory_uri() . '/js/gallery.js', array('bte_script_utils'), null, true);
 //script per parallax in pagine pubbliche
 wp_register_script('bte_script_parallax', get_template_directory_uri() . '/js/parallax.js', array('jquery', 'lax'), null, true);
-//script per testi diinamici in homepage
+//script per testi dinamici in homepage
 wp_register_script('bte_text_changer', get_template_directory_uri() . '/js/text_changer.js', null, null, true);
+//script per caricare utenti online in classifica
+wp_register_script('bte_points_online_players_loader', get_template_directory_uri() . '/js/points_online_players_loader.js', null, null, true);
 
 // Registro gli stili
 // Post styles

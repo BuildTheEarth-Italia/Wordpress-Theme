@@ -9,8 +9,9 @@ define('DONOTCACHEPAGE', true);
 //stampo header
 get_header();
 
-// Importo stile
+// Importo stile e script
 wp_enqueue_style('bte_points_style');
+wp_enqueue_script('bte_points_online_players_loader');
 
 // Path al file di cache e durata massima, se sono rimossi non verrà eseguita la cache
 define('CACHE_FILENAME', WP_CONTENT_DIR . '/cache/classifica-cached.json'); // Default: WP_CONTENT_DIR . '/cache/classifica-cached.json'
@@ -59,7 +60,7 @@ if ($start === null || $start === false)
                         // Ottengo il gruppo a cui il player appartiene
                         $role_class = get_role_class($leaderboard[$i], $permissions);
                 ?>
-                    <tr data-index="<?= $i; ?>">
+                    <tr data-index="<?= $i; ?>" data-username="<?= $leaderboard[$i]->name; ?>">
                         <td class="rank"><?= $i + 1; ?></td>
                         <td class="username bubble-hover-trigger">
                             <img class="avatar" loading="lazy" src="https://www.mc-heads.net/avatar/<?= $leaderboard[$i]->name; ?>/25/" onerror="this.src='https:\/\/www.mc-heads.net\/avatar\/MHF_steve\/25\/';">
@@ -117,6 +118,9 @@ if ($start === null || $start === false)
 <?php
 
 get_footer();
+
+// Avvio lo script per il caricamento dei player online
+echo '<script>loadOnlineUsers("' . URL . '");</script>';
 
 flush();
 
