@@ -209,9 +209,7 @@ function obtainCachedDataIfAvailable(&$points, &$groups, &$time)
 function obtainFreshData(&$points, &$groups, &$time)
 {
     // Ottengo la lista dei punti
-    $tmpPoints = json_decode(
-        file_get_contents(URL . '/points')
-    );
+    $tmpPoints = fetchRemoteData('/points');
 
     if ($tmpPoints != null) {
         $tmpPoints = $tmpPoints->Leaderboard;
@@ -233,9 +231,7 @@ function obtainFreshData(&$points, &$groups, &$time)
     }
 
     // Ottengo la lista dei ruoli
-    $tmpGroups = json_decode(
-        file_get_contents(URL . '/permissions')
-    );
+    $tmpGroups = fetchRemoteData('/permissions');
 
     if ($tmpGroups != null) {
         $tmpGroups = $tmpGroups->groups;
@@ -259,9 +255,7 @@ function obtainFreshData(&$points, &$groups, &$time)
     }
 
     // Ottengo la lista dei ruoli
-    $tmpPlaytime = json_decode(
-        file_get_contents(URL . '/playtime')
-    );
+    $tmpPlaytime = fetchRemoteData('/playtime');
 
     if ($tmpPlaytime != null) {
         $tmpPlaytime = $tmpPlaytime->playtime;
@@ -319,6 +313,43 @@ function saveFreshData($points, $groups, $time)
 
     // Ritorno con successo
     return true;
+}
+
+function fetchRemoteData($endpoint)
+{
+    // Apro cURL 
+    $ch = curl_init(URL . $endpoint);
+
+    // Parametri di configurazione di cURL
+    curl_setopt_array(
+        $ch,
+        array(
+            // Dico a cURL di darmi il risultato e non inviarmi gli headers di HTTP
+            CURLOPT_HEADER => 0,
+            CURLOPT_RETURNTRANSFER => 1,
+
+            // Impongo di seguire i redirect
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_AUTOREFERER => true,
+
+            // Imposto il formato di un risultato accettabile
+            CURLOPT_HTTPHEADER => array(
+                'Accept' => 'application/json'
+            ),
+        )
+    );
+
+    // Parsing del JSON
+    $decodedJSON2Return = json_decode(
+        curl_exec($ch)
+    );
+
+    print_r(curl_error($ch));
+
+    // Chiudo la connessione
+    curl_close($ch);
+
+    return $decodedJSON2Return;
 }
 
 ?>
