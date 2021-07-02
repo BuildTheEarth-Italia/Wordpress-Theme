@@ -6,11 +6,13 @@ Template Post Type: page
 
 define('DONOTCACHEPAGE', true);
 
-//stampo header
+// Importo lo stile della tabella
+wp_enqueue_style('bte_points_style');
+
+// Stampo l'header
 get_header();
 
-// Importo stile e script
-wp_enqueue_style('bte_points_style');
+// Dico a Wordpress di caricare il gile Javascript per gli utenti online
 wp_enqueue_script('bte_points_online_players_loader');
 
 // Path al file di cache e durata massima, se sono rimossi non verrà eseguita la cache
@@ -33,7 +35,7 @@ if (!$gotCachedData)
 // Prendo l'indice di partenza
 $start = filter_input(INPUT_GET, 'start', FILTER_VALIDATE_INT, FILTER_NULL_ON_FAILURE);
 
-// se l'input non è valido cado nel valore di default (zero)
+// Se l'input non è valido cado nel valore di default (zero)
 if ($start === null || $start === false)
     $start = 0;
 
