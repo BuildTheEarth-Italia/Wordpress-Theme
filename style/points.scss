@@ -182,6 +182,10 @@
                     border: 5px solid var(--alt-background-color);
                 }
 
+                .online-circle + .name {
+                    margin-top: -15px;
+                }
+
                 .decorator {
                     display: flex;
                     justify-content: space-between;
