@@ -12,7 +12,7 @@ const loadOnlineUsers = async function(url) {
     // Itero tutti i giocatori online
     response.online.forEach(player => {
         // Ottengo il popup contenente il player
-        const bubble = document.querySelector('tr[data-username=' + player.name + ']')?.querySelector(".bubble") ?? null;
+        const bubble = document.querySelector("tr[data-username='" + player.name + "']")?.querySelector(".bubble") ?? null;
 
         if(bubble !== null)
             bubble.insertBefore(circle, bubble.querySelector('.name'));
