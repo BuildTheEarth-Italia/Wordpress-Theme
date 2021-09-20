@@ -125,9 +125,10 @@ class Photos_List_Table extends WP_List_Table
 
 		//rimuovo elementi non selezionati
 		foreach ($items as $item) {
-			if (($_REQUEST['photo_tag'] == 'Nascosti' && $item->visible == true) || ($_REQUEST['photo_tag'] == 'Visibili' && $item->visible == false)) {
-				continue;
-			}
+			if (isset($_REQUEST['photo_tag']))
+				if (($_REQUEST['photo_tag'] == 'Nascosti' && $item->visible == true) || ($_REQUEST['photo_tag'] == 'Visibili' && $item->visible == false)) {
+					continue;
+				}
 
 			$this->items[] = $item;
 		}
@@ -215,7 +216,7 @@ function render_bte_theme_menu_page()
 		<button class="page-title-action bte-upload">Aggiungi foto</button>
 		<hr class="wp-header-end">
 
-		<?php if ($_REQUEST['action'] == 'upload') { ?>
+		<?php if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'upload') { ?>
 			<form method="post">
 				<?= json_encode(get_photo_list()); ?>
 
@@ -251,13 +252,20 @@ function add_bte_theme_menu_item()
 
 	// La sezione con i campi
 	add_settings_section('bte_sentences_section', 'Frasi della Homescreen', null, 'bte_theme_menu_page');
+	add_settings_section('bte_discord_section', 'Collegamenti con Discord', null, 'bte_theme_menu_page');
 
 	//Salvo il dato
 	register_setting('bte_theme_menu_page', 'bte_main_sentence');
-	register_setting('bte_theme_menu_page', 'bte_second_sentences', ['type' => 'array']);
+	register_setting('bte_theme_menu_page', 'bte_second_sentences', ['type' => 'array', 'description' => 'Inserisci una frase per riga']);
+	register_setting('bte_theme_menu_page', 'bte_discord_url');
+	register_setting('bte_theme_menu_page', 'bte_discord_add_utm', ['type' => 'boolean']);
+	register_setting('bte_theme_menu_page', 'bte_discord_widget_url');
 
 	add_settings_field('bte_main_sentence', 'Frase primaria', 'bte_fill_main_sentence', 'bte_theme_menu_page', 'bte_sentences_section');
-	add_settings_field('bte_second_sentences', 'Frasi secondarie', 'bte_fill_second_sentences', 'bte_theme_menu_page', 'bte_sentences_section', ['label_for' => 'Inserisci una frase per riga']);
+	add_settings_field('bte_second_sentences', 'Frasi secondarie', 'bte_fill_second_sentences', 'bte_theme_menu_page', 'bte_sentences_section');
+	add_settings_field('bte_discord_url', 'URL al server Discord', 'bte_fill_discord_url', 'bte_theme_menu_page', 'bte_discord_section');
+	add_settings_field('bte_discord_add_utm', 'Usare i tag UTM?', 'bte_fill_discord_add_utm', 'bte_theme_menu_page', 'bte_discord_section');
+	add_settings_field('bte_discord_widget_url', 'URL del widget Discord', 'bte_fill_discord_widget_url', 'bte_theme_menu_page', 'bte_discord_section');
 }
 add_action('admin_menu', 'add_bte_theme_menu_item');
 
@@ -307,14 +315,35 @@ function bte_add_image_via_ajax()
 function bte_fill_main_sentence()
 {
 ?>
-	<input type="text" name="bte_main_sentence" id="bte_main_sentence" value="<?php echo get_option('bte_main_sentence'); ?>" />
+	<input type="text" name="bte_main_sentence" id="bte_main_sentence" value="<?= get_option('bte_main_sentence'); ?>" />
 <?php
 }
 
 function bte_fill_second_sentences()
 {
 ?>
-	<textarea name="bte_second_sentences" id="bte_second_sentences"><?php echo get_option('bte_second_sentences'); ?></textarea>
+	<textarea name="bte_second_sentences" id="bte_second_sentences"><?= get_option('bte_second_sentences'); ?></textarea>
+<?php
+}
+
+function bte_fill_discord_url()
+{
+?>
+	<input type="text" name="bte_discord_url" id="bte_discord_url" required value="<?= get_option('bte_discord_url', 'https://discord.com/invite/dMahHCH'); ?>" />
+<?php
+}
+
+function bte_fill_discord_add_utm()
+{
+?>
+	<input type="checkbox" name="bte_discord_add_utm" id="bte_discord_add_utm" value="1" <?php checked(1, get_option('bte_discord_add_utm'), true); ?>" />
+<?php
+}
+
+function bte_fill_discord_widget_url()
+{
+?>
+	<input type="text" name="bte_discord_widget_url" id="bte_discord_widget_url" required value="<?= get_option('bte_discord_widget_url', 'https://discordapp.com/widget?id=686910132017430538&amp;theme=light'); ?>" />
 <?php
 }
 ?>

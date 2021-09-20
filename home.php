@@ -11,6 +11,12 @@ $photos = get_photos_from_bte_theme_showcase();
 if (count($photos) > 0)
   //importo script per galleria
   wp_enqueue_script('bte_script_gallery');
+
+$discordInvite = get_option('bte_discord_url', 'https://discord.com/invite/dMahHCH');
+if (get_option('bte_discord_add_utm'))
+  $discordInvite .= '?utm_source=bteitalia.it&utm_medium=discord&utm_content=';
+
+$discordWidget = get_option('bte_discord_widget', 'https://discordapp.com/widget?id=686910132017430538&amp;theme=light');
 ?>
 
 
@@ -60,8 +66,8 @@ if (count($photos) > 0)
       <h1 class="title">Partecipa</h1>
       <p class="description">Sei interessato? Vuoi partecipare?<br>Tutto quello che devi fare è entrare <wbr>nel server Discord!</p>
     </div>
-    <iframe class="media" loading="lazy" allowtransparency="true" frameborder="0" src="https://discordapp.com/widget?id=686910132017430538&amp;theme=light"></iframe>
-    <a href="https://discord.com/invite/dMahHCH" title="Il nostro server Discord" class="discordJoinButton">Unisciti</a>
+    <iframe class="media" loading="lazy" allowtransparency="true" frameborder="0" src="<?= $discordWidget; ?>"></iframe>
+    <a href="<?= $discordInvite . (get_option('bte_discord_add_utm') ? 'mobile' : ''); ?>" title="Il nostro server Discord" class="discordJoinButton">Unisciti</a>
   </div>
 </section>
 <?php
@@ -79,8 +85,8 @@ if (count($photos) > 0) { ?>
             $path = $photo->path;
 
             // Cambio url in https se la connessione corrente lo è
-            if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443 || $_SERVER['X-Forwarded-Proto'] == 'https')
-               $path = str_replace("http://", "https://", $path);
+            if ((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443 || (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) &&  $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'))
+              $path = str_replace("http://", "https://", $path);
 
           ?>
             <figure class="media" data-gallery-id="<?= $id ?>">
