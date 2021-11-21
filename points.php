@@ -267,18 +267,18 @@ function obtainFreshData(&$points, &$groups, &$time)
             $t = $entry->ticks;
 
             // Converto il tempo da ticks al formato "umano"
-            $seconds = (int) ($t / 20);
-            $minutes = (int) ($seconds / 60);
-            $hours = (int) ($minutes / 60);
+            $seconds = (int) ($t / 20) % 60;
+            $minutes = (int) ($seconds / 60) % 60;
+            $hours = (int) ($minutes / 60) % 24;
             $days = (int) ($hours / 24);
 
             // Creo la stringa
             if ($days > 0)
                 $time->{$entry->name} = $days . ' giorni, ';
-
-            $time->{$entry->name} .= $hours % 24 . ' ore, ';
-            $time->{$entry->name} .= $minutes % 60 . ' minuti e ';
-            $time->{$entry->name} .= $seconds % 60 . ' secondi';
+            if ($hours > 0)
+                $time->{$entry->name} .= $hours . ' ore, ';
+            $time->{$entry->name} .= $minutes . ' minuti e ';
+            $time->{$entry->name} .= $seconds  . ' secondi';
         }
 
         // Rimuovo la variabile temporanea
