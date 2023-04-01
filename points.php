@@ -17,16 +17,12 @@ wp_enqueue_script('bte_points_online_players_loader');
 
 // Path al file di cache e durata massima, se sono rimossi non verrà eseguita la cache
 define('CACHE_FILENAME', WP_CONTENT_DIR . '/cache/classifica-cached.json'); // Default: WP_CONTENT_DIR . '/cache/classifica-cached.json'
-define('CACHE_MAX_LIFE', 'P2D'); // Default: P2D
-
-// URL Per le richieste al plugin https://github.com/BuildTheEarth-Italia/DataList
-define('URL', 'http://bteitalia.it:8000');
 
 $leaderboard = array();
 $permissions = new stdClass();
 $playtime = new stdClass();
 
-$gotCachedData =  defined('CACHE_FILENAME') && defined('CACHE_MAX_LIFE') && obtainCachedDataIfAvailable($leaderboard, $permissions, $playtime);
+$gotCachedData = defined('CACHE_FILENAME') && obtainCachedDataIfAvailable($leaderboard, $permissions, $playtime);
 
 // Se non sono riuscito a caricare la cache carico le risorse "fresche"
 if (!$gotCachedData)
@@ -122,7 +118,7 @@ if ($start === null || $start === false)
 get_footer();
 
 // Avvio lo script per il caricamento dei player online
-echo '<script>loadOnlineUsers("' . URL . '");</script>';
+echo '<script>loadOnlineUsers("' . get_option('bte_points_api_url', 'http://localhost:8000') . '");</script>';
 
 flush();
 
@@ -174,6 +170,12 @@ function get_national_flag($user, $groups)
 
 function obtainCachedDataIfAvailable(&$points, &$groups, &$time)
 {
+    $cacheExpiryDays = get_option('bte_points_cache_days', '2');
+
+    // Se la cache è disabilitata ritorno false
+    if ($cacheExpiryDays == 0)
+        return false;
+
     $f = @fopen(CACHE_FILENAME, 'r');
 
     // Se il file non esiste ritorno false
@@ -189,7 +191,9 @@ function obtainCachedDataIfAvailable(&$points, &$groups, &$time)
     fclose($f);
 
     // Verifico che siano passati almeno 2 gorni
-    $isCacheExpired = DateTimeImmutable::createFromFormat('U', $cachedData->cacheDate)->add(new DateInterval(CACHE_MAX_LIFE)) < new DateTimeImmutable();
+    $isCacheExpired = DateTimeImmutable::createFromFormat('U', $cachedData->cacheDate)->add(new DateInterval(
+        'P' . $cacheExpiryDays . 'D'
+    )) < new DateTimeImmutable();
 
     // Se la cache è scauta ritorno false
     if ($isCacheExpired)
@@ -320,7 +324,7 @@ function saveFreshData($points, $groups, $time)
 function fetchRemoteData($endpoint)
 {
     // Apro cURL 
-    $ch = curl_init(URL . $endpoint);
+    $ch = curl_init(get_option('bte_points_api_url', 'http://localhost:8000') . $endpoint);
 
     // Parametri di configurazione di cURL
     curl_setopt_array(

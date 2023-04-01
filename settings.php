@@ -253,6 +253,7 @@ function add_bte_theme_menu_item()
 	// La sezione con i campi
 	add_settings_section('bte_sentences_section', 'Frasi della Homescreen', null, 'bte_theme_menu_page');
 	add_settings_section('bte_discord_section', 'Collegamenti con Discord', null, 'bte_theme_menu_page');
+	add_settings_section('bte_points_section', 'Statistiche', null, 'bte_theme_menu_page');
 
 	//Salvo il dato
 	register_setting('bte_theme_menu_page', 'bte_main_sentence');
@@ -260,12 +261,15 @@ function add_bte_theme_menu_item()
 	register_setting('bte_theme_menu_page', 'bte_discord_url');
 	register_setting('bte_theme_menu_page', 'bte_discord_add_utm', ['type' => 'boolean']);
 	register_setting('bte_theme_menu_page', 'bte_discord_widget_url');
+	register_setting('bte_theme_menu_page', 'bte_points_api_url');
 
 	add_settings_field('bte_main_sentence', 'Frase primaria', 'bte_fill_main_sentence', 'bte_theme_menu_page', 'bte_sentences_section');
 	add_settings_field('bte_second_sentences', 'Frasi secondarie', 'bte_fill_second_sentences', 'bte_theme_menu_page', 'bte_sentences_section');
 	add_settings_field('bte_discord_url', 'URL al server Discord', 'bte_fill_discord_url', 'bte_theme_menu_page', 'bte_discord_section');
 	add_settings_field('bte_discord_add_utm', 'Usare i tag UTM?', 'bte_fill_discord_add_utm', 'bte_theme_menu_page', 'bte_discord_section');
 	add_settings_field('bte_discord_widget_url', 'URL del widget Discord', 'bte_fill_discord_widget_url', 'bte_theme_menu_page', 'bte_discord_section');
+	add_settings_field('bte_points_api_url', 'API URL del server delle statistiche', 'bte_fill_points_api_url', 'bte_theme_menu_page', 'bte_points_section');
+	add_settings_field('bte_points_cache_days', 'Giorni di cache', 'bte_fill_points_cache_days', 'bte_theme_menu_page', 'bte_points_section');
 }
 add_action('admin_menu', 'add_bte_theme_menu_item');
 
@@ -344,6 +348,20 @@ function bte_fill_discord_widget_url()
 {
 ?>
 	<input type="text" name="bte_discord_widget_url" id="bte_discord_widget_url" required value="<?= get_option('bte_discord_widget_url', 'https://discordapp.com/widget?id=686910132017430538&amp;theme=light'); ?>" />
+<?php
+}
+
+function bte_fill_points_api_url()
+{
+?>
+	<input type="text" name="bte_points_api_url" id="bte_points_api_url" required value="<?= get_option('bte_points_api_url', 'http://localhost:8000'); ?>" />
+<?php
+}
+
+function bte_fill_points_cache_days()
+{
+?>
+	<input type="number" min="0" max="30" name="bte_points_cache_days" id="bte_points_cache_days" required value="<?= get_option('bte_points_cache_days', '2'); ?>" />
 <?php
 }
 ?>
