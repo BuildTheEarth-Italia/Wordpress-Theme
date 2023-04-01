@@ -134,11 +134,11 @@ function get_role_class($user, $groups)
     if ($groups != null) {
         $name = $user->name;
 
-        if (array_search($name, $groups->master) !== false) {
+        if (is_array($groups->master) && array_search($name, $groups->master) !== false) {
             return 'role-master';
-        } else if (array_search($name, $groups->expert) !== false) {
+        } else if (is_array($groups->expert) && array_search($name, $groups->expert) !== false) {
             return 'role-expert';
-        } else if (array_search($name, $groups->architect) !== false) {
+        } else if (is_array($groups->architect) && array_search($name, $groups->architect) !== false) {
             return 'role-architect';
         }
     }
