@@ -1,4 +1,9 @@
-lax.setup(); // Inizializzo lax
+let isLaxInitialized = false;
+
+try {
+    lax.setup(); // Inizializzo lax
+    isLaxInitialized = true;
+} catch (e) { }
 
 const navbar = jQuery('.navbar');  // Reference alla navbar
 const container = jQuery('.root'); // Reference al contenuto
@@ -11,8 +16,11 @@ const updateOnScroll = function () {
     // Assegnazione per compatibilità
     const scroll = jQuery(document).scrollTop();
 
-    // Aggiorno lax
-    lax.update(scroll);
+    try {
+        // Aggiorno lax se è stato inizializzato
+        if (isLaxInitialized)
+            lax.update(scroll);
+    } catch (e) { }
 
     // Ottengo la distanza tra la fine della navbar è il top della viewport
     const distance = scroll - navbar.outerHeight(true);
@@ -33,7 +41,7 @@ const updateOnScroll = function () {
         }
     } else {
         // Rimuovo la classe fixed-top alla navbar
-        navbar.removeClass('csudtom-background fixed');
+        navbar.removeClass('custom-background fixed');
 
         // Rimuovo margine al container
         container.css('marginTop', currentMargin);
